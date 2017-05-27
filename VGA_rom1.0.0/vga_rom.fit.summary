@@ -1,14 +1,14 @@
-Fitter Status : Successful - Fri May 26 16:53:31 2017
+Fitter Status : Successful - Sat May 27 11:21:11 2017
 Quartus II 64-Bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
 Revision Name : vga_rom
 Top-level Entity Name : main
 Family : Cyclone II
 Device : EP2C70F672C8
 Timing Models : Final
-Total logic elements : 2,002 / 68,416 ( 3 % )
-    Total combinational functions : 1,502 / 68,416 ( 2 % )
-    Dedicated logic registers : 1,104 / 68,416 ( 2 % )
-Total registers : 1104
+Total logic elements : 2,016 / 68,416 ( 3 % )
+    Total combinational functions : 1,518 / 68,416 ( 2 % )
+    Dedicated logic registers : 1,115 / 68,416 ( 2 % )
+Total registers : 1115
 Total pins : 115 / 422 ( 27 % )
 Total virtual pins : 0
 Total memory bits : 94,848 / 1,152,000 ( 8 % )

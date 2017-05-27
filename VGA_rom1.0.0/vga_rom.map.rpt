@@ -1,5 +1,5 @@
 Analysis & Synthesis report for vga_rom
-Fri May 26 16:53:18 2017
+Sat May 27 11:20:57 2017
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -73,15 +73,15 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri May 26 16:53:18 2017           ;
+; Analysis & Synthesis Status        ; Successful - Sat May 27 11:20:57 2017           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; vga_rom                                         ;
 ; Top-level Entity Name              ; main                                            ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 2,036                                           ;
-;     Total combinational functions  ; 1,498                                           ;
-;     Dedicated logic registers      ; 1,104                                           ;
-; Total registers                    ; 1104                                            ;
+; Total logic elements               ; 2,052                                           ;
+;     Total combinational functions  ; 1,514                                           ;
+;     Dedicated logic registers      ; 1,115                                           ;
+; Total registers                    ; 1115                                            ;
 ; Total pins                         ; 115                                             ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 94,848                                          ;
@@ -197,19 +197,19 @@ applicable agreement for further details.
 +----------------------------------+-----------------+----------------------------------------+-------------------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type                              ; File Name with Absolute Path                                                  ; Library ;
 +----------------------------------+-----------------+----------------------------------------+-------------------------------------------------------------------------------+---------+
-; tt/screenCoordinate.vhd          ; yes             ; User VHDL File                         ; C:/Users/Tony/Desktop/VGA_rom1/tt/screenCoordinate.vhd                        ;         ;
-; tt/boxCollector.vhd              ; yes             ; User VHDL File                         ; C:/Users/Tony/Desktop/VGA_rom1/tt/boxCollector.vhd                            ;         ;
-; tt/romOfBox.vhd                  ; yes             ; User Wizard-Generated File             ; C:/Users/Tony/Desktop/VGA_rom1/tt/romOfBox.vhd                                ;         ;
-; tt/drawpoint.vhd                 ; yes             ; User VHDL File                         ; C:/Users/Tony/Desktop/VGA_rom1/tt/drawpoint.vhd                               ;         ;
-; main.vhd                         ; yes             ; User VHDL File                         ; C:/Users/Tony/Desktop/VGA_rom1/main.vhd                                       ;         ;
-; tt/gameControlUnit.vhd           ; yes             ; User VHDL File                         ; C:/Users/Tony/Desktop/VGA_rom1/tt/gameControlUnit.vhd                         ;         ;
-; tt/fp.vhd                        ; yes             ; User VHDL File                         ; C:/Users/Tony/Desktop/VGA_rom1/tt/fp.vhd                                      ;         ;
-; VGA_640480.vhd                   ; yes             ; User VHDL File                         ; C:/Users/Tony/Desktop/VGA_rom1/VGA_640480.vhd                                 ;         ;
-; ps2_mouse.vhd                    ; yes             ; User VHDL File                         ; C:/Users/Tony/Desktop/VGA_rom1/ps2_mouse.vhd                                  ;         ;
-; c_r.vhd                          ; yes             ; User Wizard-Generated File             ; C:/Users/Tony/Desktop/VGA_rom1/c_r.vhd                                        ;         ;
-; c_g.vhd                          ; yes             ; User Wizard-Generated File             ; C:/Users/Tony/Desktop/VGA_rom1/c_g.vhd                                        ;         ;
-; c_b.vhd                          ; yes             ; User Wizard-Generated File             ; C:/Users/Tony/Desktop/VGA_rom1/c_b.vhd                                        ;         ;
-; r.vhd                            ; yes             ; Auto-Found Wizard-Generated File       ; C:/Users/Tony/Desktop/VGA_rom1/r.vhd                                          ;         ;
+; tt/screenCoordinate.vhd          ; yes             ; User VHDL File                         ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/tt/screenCoordinate.vhd        ;         ;
+; tt/boxCollector.vhd              ; yes             ; User VHDL File                         ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/tt/boxCollector.vhd            ;         ;
+; tt/romOfBox.vhd                  ; yes             ; User Wizard-Generated File             ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/tt/romOfBox.vhd                ;         ;
+; tt/drawpoint.vhd                 ; yes             ; User VHDL File                         ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/tt/drawpoint.vhd               ;         ;
+; main.vhd                         ; yes             ; User VHDL File                         ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/main.vhd                       ;         ;
+; tt/gameControlUnit.vhd           ; yes             ; User VHDL File                         ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/tt/gameControlUnit.vhd         ;         ;
+; tt/fp.vhd                        ; yes             ; User VHDL File                         ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/tt/fp.vhd                      ;         ;
+; VGA_640480.vhd                   ; yes             ; User VHDL File                         ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/VGA_640480.vhd                 ;         ;
+; ps2_mouse.vhd                    ; yes             ; User VHDL File                         ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/ps2_mouse.vhd                  ;         ;
+; c_r.vhd                          ; yes             ; User Wizard-Generated File             ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/c_r.vhd                        ;         ;
+; c_g.vhd                          ; yes             ; User Wizard-Generated File             ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/c_g.vhd                        ;         ;
+; c_b.vhd                          ; yes             ; User Wizard-Generated File             ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/c_b.vhd                        ;         ;
+; r.vhd                            ; yes             ; Auto-Found Wizard-Generated File       ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/r.vhd                          ;         ;
 ; altsyncram.tdf                   ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/altsyncram.tdf               ;         ;
 ; stratix_ram_block.inc            ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/stratix_ram_block.inc        ;         ;
 ; lpm_mux.inc                      ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/lpm_mux.inc                  ;         ;
@@ -219,22 +219,22 @@ applicable agreement for further details.
 ; altrom.inc                       ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/altrom.inc                   ;         ;
 ; altram.inc                       ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/altram.inc                   ;         ;
 ; altdpram.inc                     ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/altdpram.inc                 ;         ;
-; db/altsyncram_n581.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/VGA_rom1/db/altsyncram_n581.tdf                         ;         ;
-; ./s/test_r.mif                   ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/Tony/Desktop/VGA_rom1/s/test_r.mif                                   ;         ;
-; g.vhd                            ; yes             ; Auto-Found Wizard-Generated File       ; C:/Users/Tony/Desktop/VGA_rom1/g.vhd                                          ;         ;
-; db/altsyncram_c581.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/VGA_rom1/db/altsyncram_c581.tdf                         ;         ;
-; ./s/test_g.mif                   ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/Tony/Desktop/VGA_rom1/s/test_g.mif                                   ;         ;
-; b.vhd                            ; yes             ; Auto-Found Wizard-Generated File       ; C:/Users/Tony/Desktop/VGA_rom1/b.vhd                                          ;         ;
-; db/altsyncram_7581.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/VGA_rom1/db/altsyncram_7581.tdf                         ;         ;
-; ./s/test_b.mif                   ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/Tony/Desktop/VGA_rom1/s/test_b.mif                                   ;         ;
-; db/altsyncram_gq71.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/VGA_rom1/db/altsyncram_gq71.tdf                         ;         ;
-; ./s/c_r.mif                      ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/Tony/Desktop/VGA_rom1/s/c_r.mif                                      ;         ;
-; db/altsyncram_5q71.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/VGA_rom1/db/altsyncram_5q71.tdf                         ;         ;
-; ./s/c_g.mif                      ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/Tony/Desktop/VGA_rom1/s/c_g.mif                                      ;         ;
-; db/altsyncram_0q71.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/VGA_rom1/db/altsyncram_0q71.tdf                         ;         ;
-; ./s/c_b.mif                      ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/Tony/Desktop/VGA_rom1/s/c_b.mif                                      ;         ;
-; db/altsyncram_d981.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/VGA_rom1/db/altsyncram_d981.tdf                         ;         ;
-; ../s/myBoxes.mif                 ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/Tony/Desktop/VGA_rom1/s/myBoxes.mif                                  ;         ;
+; db/altsyncram_n581.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/db/altsyncram_n581.tdf         ;         ;
+; s/test_r.mif                     ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/s/test_r.mif                   ;         ;
+; g.vhd                            ; yes             ; Auto-Found Wizard-Generated File       ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/g.vhd                          ;         ;
+; db/altsyncram_c581.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/db/altsyncram_c581.tdf         ;         ;
+; s/test_g.mif                     ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/s/test_g.mif                   ;         ;
+; b.vhd                            ; yes             ; Auto-Found Wizard-Generated File       ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/b.vhd                          ;         ;
+; db/altsyncram_7581.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/db/altsyncram_7581.tdf         ;         ;
+; s/test_b.mif                     ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/s/test_b.mif                   ;         ;
+; db/altsyncram_gq71.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/db/altsyncram_gq71.tdf         ;         ;
+; s/c_r.mif                        ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/s/c_r.mif                      ;         ;
+; db/altsyncram_5q71.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/db/altsyncram_5q71.tdf         ;         ;
+; s/c_g.mif                        ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/s/c_g.mif                      ;         ;
+; db/altsyncram_0q71.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/db/altsyncram_0q71.tdf         ;         ;
+; s/c_b.mif                        ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/s/c_b.mif                      ;         ;
+; db/altsyncram_d981.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/db/altsyncram_d981.tdf         ;         ;
+; s/myboxes.mif                    ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/s/myboxes.mif                  ;         ;
 ; sld_signaltap.vhd                ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/sld_signaltap.vhd            ;         ;
 ; sld_signaltap_impl.vhd           ; yes             ; Encrypted Megafunction                 ; e:/quartus13.0sp/quartus/libraries/megafunctions/sld_signaltap_impl.vhd       ;         ;
 ; sld_ela_control.vhd              ; yes             ; Encrypted Megafunction                 ; e:/quartus13.0sp/quartus/libraries/megafunctions/sld_ela_control.vhd          ;         ;
@@ -244,7 +244,7 @@ applicable agreement for further details.
 ; sld_mbpmg.vhd                    ; yes             ; Encrypted Megafunction                 ; e:/quartus13.0sp/quartus/libraries/megafunctions/sld_mbpmg.vhd                ;         ;
 ; sld_ela_trigger_flow_mgr.vhd     ; yes             ; Encrypted Megafunction                 ; e:/quartus13.0sp/quartus/libraries/megafunctions/sld_ela_trigger_flow_mgr.vhd ;         ;
 ; sld_buffer_manager.vhd           ; yes             ; Encrypted Megafunction                 ; e:/quartus13.0sp/quartus/libraries/megafunctions/sld_buffer_manager.vhd       ;         ;
-; db/altsyncram_up14.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/VGA_rom1/db/altsyncram_up14.tdf                         ;         ;
+; db/altsyncram_up14.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/db/altsyncram_up14.tdf         ;         ;
 ; altdpram.tdf                     ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/altdpram.tdf                 ;         ;
 ; memmodes.inc                     ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/others/maxplus2/memmodes.inc               ;         ;
 ; a_hdffe.inc                      ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/a_hdffe.inc                  ;         ;
@@ -254,23 +254,23 @@ applicable agreement for further details.
 ; muxlut.inc                       ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/muxlut.inc                   ;         ;
 ; bypassff.inc                     ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/bypassff.inc                 ;         ;
 ; altshift.inc                     ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/altshift.inc                 ;         ;
-; db/mux_aoc.tdf                   ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/VGA_rom1/db/mux_aoc.tdf                                 ;         ;
+; db/mux_aoc.tdf                   ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/db/mux_aoc.tdf                 ;         ;
 ; lpm_decode.tdf                   ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/lpm_decode.tdf               ;         ;
 ; declut.inc                       ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/declut.inc                   ;         ;
 ; lpm_compare.inc                  ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/lpm_compare.inc              ;         ;
-; db/decode_rqf.tdf                ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/VGA_rom1/db/decode_rqf.tdf                              ;         ;
+; db/decode_rqf.tdf                ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/db/decode_rqf.tdf              ;         ;
 ; lpm_counter.tdf                  ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/lpm_counter.tdf              ;         ;
 ; lpm_add_sub.inc                  ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/lpm_add_sub.inc              ;         ;
 ; cmpconst.inc                     ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/cmpconst.inc                 ;         ;
 ; lpm_counter.inc                  ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/lpm_counter.inc              ;         ;
 ; alt_counter_stratix.inc          ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/alt_counter_stratix.inc      ;         ;
-; db/cntr_0ci.tdf                  ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/VGA_rom1/db/cntr_0ci.tdf                                ;         ;
-; db/cmpr_acc.tdf                  ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/VGA_rom1/db/cmpr_acc.tdf                                ;         ;
-; db/cntr_02j.tdf                  ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/VGA_rom1/db/cntr_02j.tdf                                ;         ;
-; db/cntr_sbi.tdf                  ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/VGA_rom1/db/cntr_sbi.tdf                                ;         ;
-; db/cmpr_8cc.tdf                  ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/VGA_rom1/db/cmpr_8cc.tdf                                ;         ;
-; db/cntr_gui.tdf                  ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/VGA_rom1/db/cntr_gui.tdf                                ;         ;
-; db/cmpr_5cc.tdf                  ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/VGA_rom1/db/cmpr_5cc.tdf                                ;         ;
+; db/cntr_0ci.tdf                  ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/db/cntr_0ci.tdf                ;         ;
+; db/cmpr_acc.tdf                  ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/db/cmpr_acc.tdf                ;         ;
+; db/cntr_02j.tdf                  ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/db/cntr_02j.tdf                ;         ;
+; db/cntr_sbi.tdf                  ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/db/cntr_sbi.tdf                ;         ;
+; db/cmpr_8cc.tdf                  ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/db/cmpr_8cc.tdf                ;         ;
+; db/cntr_gui.tdf                  ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/db/cntr_gui.tdf                ;         ;
+; db/cmpr_5cc.tdf                  ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/db/cmpr_5cc.tdf                ;         ;
 ; sld_rom_sr.vhd                   ; yes             ; Encrypted Megafunction                 ; e:/quartus13.0sp/quartus/libraries/megafunctions/sld_rom_sr.vhd               ;         ;
 ; sld_hub.vhd                      ; yes             ; Encrypted Megafunction                 ; e:/quartus13.0sp/quartus/libraries/megafunctions/sld_hub.vhd                  ;         ;
 ; sld_jtag_hub.vhd                 ; yes             ; Encrypted Megafunction                 ; e:/quartus13.0sp/quartus/libraries/megafunctions/sld_jtag_hub.vhd             ;         ;
@@ -278,7 +278,7 @@ applicable agreement for further details.
 ; addcore.inc                      ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/addcore.inc                  ;         ;
 ; look_add.inc                     ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/look_add.inc                 ;         ;
 ; alt_stratix_add_sub.inc          ; yes             ; Megafunction                           ; e:/quartus13.0sp/quartus/libraries/megafunctions/alt_stratix_add_sub.inc      ;         ;
-; db/add_sub_9ri.tdf               ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/VGA_rom1/db/add_sub_9ri.tdf                             ;         ;
+; db/add_sub_9ri.tdf               ; yes             ; Auto-Generated Megafunction            ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/db/add_sub_9ri.tdf             ;         ;
 +----------------------------------+-----------------+----------------------------------------+-------------------------------------------------------------------------------+---------+
 
 
@@ -287,20 +287,20 @@ applicable agreement for further details.
 +---------------------------------------------+-------+
 ; Resource                                    ; Usage ;
 +---------------------------------------------+-------+
-; Estimated Total logic elements              ; 2,036 ;
+; Estimated Total logic elements              ; 2,052 ;
 ;                                             ;       ;
-; Total combinational functions               ; 1498  ;
+; Total combinational functions               ; 1514  ;
 ; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 473   ;
-;     -- 3 input functions                    ; 594   ;
-;     -- <=2 input functions                  ; 431   ;
+;     -- 4 input functions                    ; 476   ;
+;     -- 3 input functions                    ; 596   ;
+;     -- <=2 input functions                  ; 442   ;
 ;                                             ;       ;
 ; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 874   ;
-;     -- arithmetic mode                      ; 624   ;
+;     -- normal mode                          ; 881   ;
+;     -- arithmetic mode                      ; 633   ;
 ;                                             ;       ;
-; Total registers                             ; 1104  ;
-;     -- Dedicated logic registers            ; 1104  ;
+; Total registers                             ; 1115  ;
+;     -- Dedicated logic registers            ; 1115  ;
 ;     -- I/O registers                        ; 0     ;
 ;                                             ;       ;
 ; I/O pins                                    ; 115   ;
@@ -308,7 +308,7 @@ applicable agreement for further details.
 ; Embedded Multiplier 9-bit elements          ; 0     ;
 ; Maximum fan-out node                        ; clk_0 ;
 ; Maximum fan-out                             ; 520   ;
-; Total fan-out                               ; 9521  ;
+; Total fan-out                               ; 9602  ;
 ; Average fan-out                             ; 3.35  ;
 +---------------------------------------------+-------+
 
@@ -318,7 +318,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                                                                              ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                                                                                                                                                                        ; Library Name ;
 +---------------------------------------------------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
-; |main                                                                                                   ; 1498 (7)          ; 1104 (0)     ; 94848       ; 0            ; 0       ; 0         ; 115  ; 0            ; |main                                                                                                                                                                                                                                                                                                                                      ; work         ;
+; |main                                                                                                   ; 1514 (7)          ; 1115 (0)     ; 94848       ; 0            ; 0       ; 0         ; 115  ; 0            ; |main                                                                                                                                                                                                                                                                                                                                      ; work         ;
 ;    |b:rom3|                                                                                             ; 0 (0)             ; 0 (0)        ; 12288       ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|b:rom3                                                                                                                                                                                                                                                                                                                               ; work         ;
 ;       |altsyncram:altsyncram_component|                                                                 ; 0 (0)             ; 0 (0)        ; 12288       ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|b:rom3|altsyncram:altsyncram_component                                                                                                                                                                                                                                                                                               ; work         ;
 ;          |altsyncram_7581:auto_generated|                                                               ; 0 (0)             ; 0 (0)        ; 12288       ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|b:rom3|altsyncram:altsyncram_component|altsyncram_7581:auto_generated                                                                                                                                                                                                                                                                ; work         ;
@@ -331,8 +331,8 @@ applicable agreement for further details.
 ;    |c_r:c_rom1|                                                                                         ; 0 (0)             ; 0 (0)        ; 6912        ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|c_r:c_rom1                                                                                                                                                                                                                                                                                                                           ; work         ;
 ;       |altsyncram:altsyncram_component|                                                                 ; 0 (0)             ; 0 (0)        ; 6912        ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|c_r:c_rom1|altsyncram:altsyncram_component                                                                                                                                                                                                                                                                                           ; work         ;
 ;          |altsyncram_gq71:auto_generated|                                                               ; 0 (0)             ; 0 (0)        ; 6912        ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|c_r:c_rom1|altsyncram:altsyncram_component|altsyncram_gq71:auto_generated                                                                                                                                                                                                                                                            ; work         ;
-;    |drawpoint:mouse|                                                                                    ; 152 (29)          ; 113 (0)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|drawpoint:mouse                                                                                                                                                                                                                                                                                                                      ; work         ;
-;       |ps2_mouse:mouse|                                                                                 ; 123 (123)         ; 113 (113)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|drawpoint:mouse|ps2_mouse:mouse                                                                                                                                                                                                                                                                                                      ; work         ;
+;    |drawpoint:mouse|                                                                                    ; 167 (29)          ; 124 (0)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|drawpoint:mouse                                                                                                                                                                                                                                                                                                                      ; work         ;
+;       |ps2_mouse:mouse|                                                                                 ; 138 (138)         ; 124 (124)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|drawpoint:mouse|ps2_mouse:mouse                                                                                                                                                                                                                                                                                                      ; work         ;
 ;    |g:rom2|                                                                                             ; 0 (0)             ; 0 (0)        ; 12288       ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|g:rom2                                                                                                                                                                                                                                                                                                                               ; work         ;
 ;       |altsyncram:altsyncram_component|                                                                 ; 0 (0)             ; 0 (0)        ; 12288       ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|g:rom2|altsyncram:altsyncram_component                                                                                                                                                                                                                                                                                               ; work         ;
 ;          |altsyncram_c581:auto_generated|                                                               ; 0 (0)             ; 0 (0)        ; 12288       ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|g:rom2|altsyncram:altsyncram_component|altsyncram_c581:auto_generated                                                                                                                                                                                                                                                                ; work         ;
@@ -349,8 +349,8 @@ applicable agreement for further details.
 ;       |altsyncram:altsyncram_component|                                                                 ; 0 (0)             ; 0 (0)        ; 12288       ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|r:rom1|altsyncram:altsyncram_component                                                                                                                                                                                                                                                                                               ; work         ;
 ;          |altsyncram_n581:auto_generated|                                                               ; 0 (0)             ; 0 (0)        ; 12288       ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|r:rom1|altsyncram:altsyncram_component|altsyncram_n581:auto_generated                                                                                                                                                                                                                                                                ; work         ;
 ;    |screenCoordinate:sc|                                                                                ; 40 (40)           ; 57 (57)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|screenCoordinate:sc                                                                                                                                                                                                                                                                                                                  ; work         ;
-;    |sld_hub:auto_hub|                                                                                   ; 118 (1)           ; 86 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|sld_hub:auto_hub                                                                                                                                                                                                                                                                                                                     ; work         ;
-;       |sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst|                                                    ; 117 (79)          ; 86 (58)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|sld_hub:auto_hub|sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst                                                                                                                                                                                                                                                                        ; work         ;
+;    |sld_hub:auto_hub|                                                                                   ; 119 (1)           ; 86 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|sld_hub:auto_hub                                                                                                                                                                                                                                                                                                                     ; work         ;
+;       |sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst|                                                    ; 118 (80)          ; 86 (58)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|sld_hub:auto_hub|sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst                                                                                                                                                                                                                                                                        ; work         ;
 ;          |sld_rom_sr:hub_info_reg|                                                                      ; 21 (21)           ; 9 (9)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|sld_hub:auto_hub|sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst|sld_rom_sr:hub_info_reg                                                                                                                                                                                                                                                ; work         ;
 ;          |sld_shadow_jsm:shadow_jsm|                                                                    ; 17 (17)           ; 19 (19)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|sld_hub:auto_hub|sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst|sld_shadow_jsm:shadow_jsm                                                                                                                                                                                                                                              ; work         ;
 ;    |sld_signaltap:auto_signaltap_0|                                                                     ; 317 (1)           ; 632 (70)     ; 4480        ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|sld_signaltap:auto_signaltap_0                                                                                                                                                                                                                                                                                                       ; work         ;
@@ -442,20 +442,20 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis IP Cores Summary                                                                                                                 ;
-+--------+--------------+---------+--------------+--------------+--------------------------------------+------------------------------------------------+
-; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance                      ; IP Include File                                ;
-+--------+--------------+---------+--------------+--------------+--------------------------------------+------------------------------------------------+
-; Altera ; ROM: 1-PORT  ; N/A     ; N/A          ; N/A          ; |main|boxCollector:bc|romOfBox:u1    ; C:/Users/Tony/Desktop/VGA_rom1/tt/romOfBox.vhd ;
-; Altera ; ROM: 1-PORT  ; 13.0    ; N/A          ; N/A          ; |main|c_r:c_rom1                     ; C:/Users/Tony/Desktop/VGA_rom1/c_r.vhd         ;
-; Altera ; ROM: 1-PORT  ; 13.0    ; N/A          ; N/A          ; |main|c_g:c_rom2                     ; C:/Users/Tony/Desktop/VGA_rom1/c_g.vhd         ;
-; Altera ; ROM: 1-PORT  ; 13.0    ; N/A          ; N/A          ; |main|c_b:c_rom3                     ; C:/Users/Tony/Desktop/VGA_rom1/c_b.vhd         ;
-; Altera ; ROM: 1-PORT  ; N/A     ; N/A          ; N/A          ; |main|gameControlUnit:gc|romOfBox:u1 ; C:/Users/Tony/Desktop/VGA_rom1/tt/romOfBox.vhd ;
-; Altera ; ROM: 1-PORT  ; N/A     ; N/A          ; N/A          ; |main|r:rom1                         ; C:/Users/Tony/Desktop/VGA_rom1/r.vhd           ;
-; Altera ; ROM: 1-PORT  ; N/A     ; N/A          ; N/A          ; |main|g:rom2                         ; C:/Users/Tony/Desktop/VGA_rom1/g.vhd           ;
-; Altera ; ROM: 1-PORT  ; N/A     ; N/A          ; N/A          ; |main|b:rom3                         ; C:/Users/Tony/Desktop/VGA_rom1/b.vhd           ;
-+--------+--------------+---------+--------------+--------------+--------------------------------------+------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                                                                                                 ;
++--------+--------------+---------+--------------+--------------+--------------------------------------+----------------------------------------------------------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance                      ; IP Include File                                                ;
++--------+--------------+---------+--------------+--------------+--------------------------------------+----------------------------------------------------------------+
+; Altera ; ROM: 1-PORT  ; N/A     ; N/A          ; N/A          ; |main|boxCollector:bc|romOfBox:u1    ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/tt/romOfBox.vhd ;
+; Altera ; ROM: 1-PORT  ; 13.0    ; N/A          ; N/A          ; |main|c_r:c_rom1                     ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/c_r.vhd         ;
+; Altera ; ROM: 1-PORT  ; 13.0    ; N/A          ; N/A          ; |main|c_g:c_rom2                     ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/c_g.vhd         ;
+; Altera ; ROM: 1-PORT  ; 13.0    ; N/A          ; N/A          ; |main|c_b:c_rom3                     ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/c_b.vhd         ;
+; Altera ; ROM: 1-PORT  ; N/A     ; N/A          ; N/A          ; |main|gameControlUnit:gc|romOfBox:u1 ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/tt/romOfBox.vhd ;
+; Altera ; ROM: 1-PORT  ; N/A     ; N/A          ; N/A          ; |main|r:rom1                         ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/r.vhd           ;
+; Altera ; ROM: 1-PORT  ; N/A     ; N/A          ; N/A          ; |main|g:rom2                         ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/g.vhd           ;
+; Altera ; ROM: 1-PORT  ; N/A     ; N/A          ; N/A          ; |main|b:rom3                         ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/b.vhd           ;
++--------+--------------+---------+--------------+--------------+--------------------------------------+----------------------------------------------------------------+
 
 
 Encoding Type:  One-Hot
@@ -520,12 +520,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 1104  ;
-; Number of registers using Synchronous Clear  ; 121   ;
+; Total registers                              ; 1115  ;
+; Number of registers using Synchronous Clear  ; 131   ;
 ; Number of registers using Synchronous Load   ; 85    ;
 ; Number of registers using Asynchronous Clear ; 417   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 552   ;
+; Number of registers using Clock Enable       ; 562   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -565,15 +565,16 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                  ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------------------------------+
-; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |main|drawpoint:mouse|ps2_mouse:mouse|bitcount[4]                                                           ;
-; 4:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |main|gameControlUnit:gc|addressOfBox[0]                                                                    ;
-; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; Yes        ; |main|gameControlUnit:gc|dir[2]                                                                             ;
-; 7:1                ; 9 bits    ; 36 LEs        ; 18 LEs               ; 18 LEs                 ; Yes        ; |main|vga640480:u1|r1[0]                                                                                    ;
-; 12:1               ; 16 bits   ; 128 LEs       ; 32 LEs               ; 96 LEs                 ; Yes        ; |main|gameControlUnit:gc|absoluteX[8]                                                                       ;
-; 12:1               ; 16 bits   ; 128 LEs       ; 16 LEs               ; 112 LEs                ; Yes        ; |main|gameControlUnit:gc|mins[13]                                                                           ;
-; 12:1               ; 16 bits   ; 128 LEs       ; 16 LEs               ; 112 LEs                ; Yes        ; |main|gameControlUnit:gc|minv[8]                                                                            ;
-; 14:1               ; 3 bits    ; 27 LEs        ; 9 LEs                ; 18 LEs                 ; Yes        ; |main|gameControlUnit:gc|GPS[2]                                                                             ;
-; 17:1               ; 16 bits   ; 176 LEs       ; 32 LEs               ; 144 LEs                ; Yes        ; |main|gameControlUnit:gc|absoluteY[8]                                                                       ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |main|drawpoint:mouse|ps2_mouse:mouse|bitcount[1]                                                           ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |main|drawpoint:mouse|ps2_mouse:mouse|autoresetcount[6]                                                     ;
+; 4:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |main|gameControlUnit:gc|addressOfBox[4]                                                                    ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; Yes        ; |main|gameControlUnit:gc|dir[1]                                                                             ;
+; 7:1                ; 9 bits    ; 36 LEs        ; 18 LEs               ; 18 LEs                 ; Yes        ; |main|vga640480:u1|g1[2]                                                                                    ;
+; 12:1               ; 16 bits   ; 128 LEs       ; 32 LEs               ; 96 LEs                 ; Yes        ; |main|gameControlUnit:gc|absoluteX[2]                                                                       ;
+; 12:1               ; 16 bits   ; 128 LEs       ; 16 LEs               ; 112 LEs                ; Yes        ; |main|gameControlUnit:gc|mins[11]                                                                           ;
+; 12:1               ; 16 bits   ; 128 LEs       ; 16 LEs               ; 112 LEs                ; Yes        ; |main|gameControlUnit:gc|minv[9]                                                                            ;
+; 14:1               ; 3 bits    ; 27 LEs        ; 9 LEs                ; 18 LEs                 ; Yes        ; |main|gameControlUnit:gc|GPS[0]                                                                             ;
+; 17:1               ; 16 bits   ; 176 LEs       ; 32 LEs               ; 144 LEs                ; Yes        ; |main|gameControlUnit:gc|absoluteY[11]                                                                      ;
 ; 17:1               ; 4 bits    ; 44 LEs        ; 12 LEs               ; 32 LEs                 ; Yes        ; |main|gameControlUnit:gc|jump_v[3]                                                                          ;
 ; 19:1               ; 12 bits   ; 144 LEs       ; 24 LEs               ; 120 LEs                ; Yes        ; |main|gameControlUnit:gc|jump_v[15]                                                                         ;
 ; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |main|sld_hub:auto_hub|sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst|hub_minor_ver_reg[0]                    ;
@@ -1495,7 +1496,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Fri May 26 16:53:09 2017
+    Info: Processing started: Sat May 27 11:20:49 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off vga_rom -c vga_rom
 Info (11104): Parallel Compilation has detected 4 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 2 of the 2 physical processors detected instead.
 Info (12021): Found 2 design units, including 1 entities, in source file tt/screencoordinate.vhd
@@ -1552,8 +1553,8 @@ Warning (10036): Verilog HDL or VHDL warning at main.vhd(169): object "boxes" as
 Warning (10492): VHDL Process Statement warning at main.vhd(254): signal "px" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10492): VHDL Process Statement warning at main.vhd(259): signal "py" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Info (12128): Elaborating entity "vga640480" for hierarchy "vga640480:u1"
-Warning (10492): VHDL Process Statement warning at VGA_640480.vhd(181): signal "vector_x" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at VGA_640480.vhd(181): signal "vector_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at VGA_640480.vhd(187): signal "vector_x" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at VGA_640480.vhd(187): signal "vector_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (12125): Using design file r.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
     Info (12022): Found design unit 1: r-SYN
     Info (12023): Found entity 1: r
@@ -1707,10 +1708,11 @@ Info (10041): Inferred latch for "mousex[7]" at drawpoint.vhd(52)
 Info (10041): Inferred latch for "mousex[8]" at drawpoint.vhd(52)
 Info (10041): Inferred latch for "mousex[9]" at drawpoint.vhd(52)
 Info (12128): Elaborating entity "ps2_mouse" for hierarchy "drawpoint:mouse|ps2_mouse:mouse"
-Warning (10036): Verilog HDL or VHDL warning at ps2_mouse.vhd(68): object "clean_clk" assigned a value but never read
-Warning (10492): VHDL Process Statement warning at ps2_mouse.vhd(84): signal "reset" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at ps2_mouse.vhd(261): signal "ps2_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at ps2_mouse.vhd(263): signal "ps2_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10036): Verilog HDL or VHDL warning at ps2_mouse.vhd(69): object "clean_clk" assigned a value but never read
+Warning (10492): VHDL Process Statement warning at ps2_mouse.vhd(87): signal "reset" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at ps2_mouse.vhd(120): signal "autoreset" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at ps2_mouse.vhd(279): signal "ps2_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at ps2_mouse.vhd(281): signal "ps2_data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Info (12128): Elaborating entity "gameControlUnit" for hierarchy "gameControlUnit:gc"
 Warning (10036): Verilog HDL or VHDL warning at gameControlUnit.vhd(75): object "moveToEdge" assigned a value but never read
 Info (12128): Elaborating entity "romOfBox" for hierarchy "gameControlUnit:gc|romOfBox:u1"
@@ -1910,16 +1912,16 @@ Warning (21074): Design contains 4 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "w"
     Warning (15610): No output dependent on input pin "a"
     Warning (15610): No output dependent on input pin "d"
-Info (21057): Implemented 2317 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 2333 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 9 input pins
     Info (21059): Implemented 108 output pins
     Info (21060): Implemented 2 bidirectional pins
-    Info (21061): Implemented 2080 logic cells
+    Info (21061): Implemented 2096 logic cells
     Info (21064): Implemented 117 RAM segments
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 156 warnings
-    Info: Peak virtual memory: 544 megabytes
-    Info: Processing ended: Fri May 26 16:53:18 2017
-    Info: Elapsed time: 00:00:09
-    Info: Total CPU time (on all processors): 00:00:09
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 157 warnings
+    Info: Peak virtual memory: 546 megabytes
+    Info: Processing ended: Sat May 27 11:20:57 2017
+    Info: Elapsed time: 00:00:08
+    Info: Total CPU time (on all processors): 00:00:08
 
 

@@ -1081,6 +1081,7 @@ clk_in => count[17].CLK
 clk_in => count[18].CLK
 clk_in => count[19].CLK
 clk_in => count[20].CLK
+reset_in => m1state.IN1
 reset_in => watchcount.IN1
 reset_in => mousey[0]~reg0.ACLR
 reset_in => mousey[1]~reg0.ACLR
@@ -1143,8 +1144,6 @@ reset_in => bitcount[2].ACLR
 reset_in => bitcount[3].ACLR
 reset_in => bitcount[4].ACLR
 reset_in => bitcount[5].ACLR
-reset_in => fall.ACLR
-reset_in => rise.ACLR
 reset_in => clk.ACLR
 reset_in => count[0].ACLR
 reset_in => count[1].ACLR
@@ -1168,7 +1167,6 @@ reset_in => count[18].ACLR
 reset_in => count[19].ACLR
 reset_in => count[20].ACLR
 reset_in => m2_state~3.DATAIN
-reset_in => m1_state~3.DATAIN
 ps2_clk <> ps2_clk
 ps2_data <> ps2_data
 left_button <= left_button~reg0.DB_MAX_OUTPUT_PORT_TYPE

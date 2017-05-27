@@ -2,6 +2,7 @@
 --项目名称	:	Mousee Picture Viewer
 --文件名	:	ps2.vhd
 --模块功能	：	ps/2鼠标协议的实现，根据时序实现鼠标的移动、左中右三键单击
+--自动复位，边界限制
 ---------------------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
@@ -73,7 +74,9 @@ signal output_strobe : std_logic;    -- latches data into the output registers(�
 signal packet_good : std_logic;      -- check whether the data is valid 
 signal clk,reset : std_logic;  
 signal count : std_logic_vector(20 downto 0);  
-
+constant automax: integer:= 1000;
+signal autoresetcount: integer range 0 to automax;
+signal autoreset: std_logic;
 begin
 reset<= not reset_in;
 ps2_clk <= '0' when ps2_clk_hi_z='0' else 'Z';
@@ -93,13 +96,28 @@ ps2_data <= '0' when ps2_data_hi_z='0' else 'Z';
 			end if;
 		end if;
 	end process;
-
+--auto reset
+process(clk)
+begin
+	if rising_edge(clk) then
+		if m1_state /= m1_clk_h then
+			if autoresetcount < automax then
+			autoresetcount<= autoresetcount + 1;
+			else
+			autoreset <= '1';
+			end if;
+		else
+			autoresetcount <= 0;
+			autoreset <= '0';
+		end if;
+	end if;
+end process;
 ---------------m1 state
 m1state: process (reset, clk)
 begin 
 
 
-  if (reset='1') then
+  if reset='1' or autoreset = '1' then
     rise <= '0';
     fall <= '0';
     m1_state <= m1_clk_h;

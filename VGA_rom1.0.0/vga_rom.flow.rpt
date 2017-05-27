@@ -1,5 +1,5 @@
 Flow report for vga_rom
-Fri May 26 16:53:41 2017
+Sat May 27 11:21:21 2017
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -40,17 +40,17 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Fri May 26 16:53:41 2017           ;
+; Flow Status                        ; Successful - Sat May 27 11:21:21 2017           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; vga_rom                                         ;
 ; Top-level Entity Name              ; main                                            ;
 ; Family                             ; Cyclone II                                      ;
 ; Device                             ; EP2C70F672C8                                    ;
 ; Timing Models                      ; Final                                           ;
-; Total logic elements               ; 2,002 / 68,416 ( 3 % )                          ;
-;     Total combinational functions  ; 1,502 / 68,416 ( 2 % )                          ;
-;     Dedicated logic registers      ; 1,104 / 68,416 ( 2 % )                          ;
-; Total registers                    ; 1104                                            ;
+; Total logic elements               ; 2,016 / 68,416 ( 3 % )                          ;
+;     Total combinational functions  ; 1,518 / 68,416 ( 2 % )                          ;
+;     Dedicated logic registers      ; 1,115 / 68,416 ( 2 % )                          ;
+; Total registers                    ; 1115                                            ;
 ; Total pins                         ; 115 / 422 ( 27 % )                              ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 94,848 / 1,152,000 ( 8 % )                      ;
@@ -64,7 +64,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 05/26/2017 16:53:09 ;
+; Start date & time ; 05/27/2017 11:20:49 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; vga_rom             ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ applicable agreement for further details.
 +-------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+---------------+-------------+------------------+
 ; Assignment Name                     ; Value                                                                                                                                             ; Default Value ; Entity Name ; Section Id       ;
 +-------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+---------------+-------------+------------------+
-; COMPILER_SIGNATURE_ID               ; 264390067147134.149578878906672                                                                                                                   ; --            ; --          ; --               ;
+; COMPILER_SIGNATURE_ID               ; 264390067147134.149585524907212                                                                                                                   ; --            ; --          ; --               ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; On                                                                                                                                                ; --            ; --          ; eda_simulation   ;
 ; EDA_OUTPUT_DATA_FORMAT              ; Verilog Hdl                                                                                                                                       ; --            ; --          ; eda_simulation   ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (Verilog)                                                                                                                         ; <None>        ; --          ; --               ;
@@ -100,7 +100,7 @@ applicable agreement for further details.
 ; PARTITION_COLOR                     ; 14622752                                                                                                                                          ; --            ; main        ; Top              ;
 ; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT_AND_ROUTING                                                                                                                             ; --            ; main        ; Top              ;
 ; PARTITION_NETLIST_TYPE              ; SOURCE                                                                                                                                            ; --            ; main        ; Top              ;
-; SLD_FILE                            ; C:/Users/Tony/Desktop/VGA_rom1/stp3_auto_stripped.stp                                                                                             ; --            ; --          ; --               ;
+; SLD_FILE                            ; C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/stp3_auto_stripped.stp                                                                             ; --            ; --          ; --               ;
 ; SLD_NODE_CREATOR_ID                 ; 110                                                                                                                                               ; --            ; --          ; auto_signaltap_0 ;
 ; SLD_NODE_ENTITY_NAME                ; sld_signaltap                                                                                                                                     ; --            ; --          ; auto_signaltap_0 ;
 ; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_NODE_INFO=805334528                                                                                                                           ; --            ; --          ; auto_signaltap_0 ;
@@ -134,12 +134,12 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:08     ; 1.0                     ; 544 MB              ; 00:00:08                           ;
-; Fitter                    ; 00:00:12     ; 1.1                     ; 883 MB              ; 00:00:15                           ;
-; Assembler                 ; 00:00:04     ; 1.0                     ; 447 MB              ; 00:00:04                           ;
-; TimeQuest Timing Analyzer ; 00:00:01     ; 1.0                     ; 444 MB              ; 00:00:01                           ;
+; Analysis & Synthesis      ; 00:00:07     ; 1.0                     ; 546 MB              ; 00:00:07                           ;
+; Fitter                    ; 00:00:13     ; 1.2                     ; 886 MB              ; 00:00:16                           ;
+; Assembler                 ; 00:00:05     ; 1.0                     ; 455 MB              ; 00:00:04                           ;
+; TimeQuest Timing Analyzer ; 00:00:02     ; 1.0                     ; 444 MB              ; 00:00:01                           ;
 ; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 409 MB              ; 00:00:01                           ;
-; Total                     ; 00:00:26     ; --                      ; --                  ; 00:00:29                           ;
+; Total                     ; 00:00:28     ; --                      ; --                  ; 00:00:29                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

@@ -122,7 +122,8 @@ begin
 	  	end if;
 	 end process;
 	
- -----------------------------------------------------------------------	
+ -----------------------------------------------------------------------
+	
 	process(reset, clk, vector_x, vector_y) -- XY���궨λ����
 		variable role_x, role_y, mouse_x, mouse_y: integer:=0;
 		variable flag: std_logic:= '0'; 
@@ -131,7 +132,12 @@ begin
 				r1 <= (others => '0');
 				g1	<= (others => '0');
 				b1	<= (others => '0');	
-		elsif (clk'event and clk = '1') then		
+		elsif (clk'event and clk = '1') then
+			--每来一个时钟，则
+			--鼠标
+			--人物
+			--物体
+			--背景
 			if vector_x >= 0 and vector_x < 640 and vector_y >= 0 and vector_y < 480 then
 					role_x:= conv_integer(vector_x) - conv_integer(rx);
 					role_y:= conv_integer(vector_y) - conv_integer(ry);

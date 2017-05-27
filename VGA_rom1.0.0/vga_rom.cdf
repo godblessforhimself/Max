@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP2C70F672) Path("C:/Users/Tony/Desktop/VGA_rom1/") File("vga_rom.sof") MfrSpec(OpMask(1));
+		Device PartName(EP2C70F672) Path("C:/Users/Tony/Desktop/vga/Maxwell/VGA_rom1.0.0/") File("vga_rom.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 
