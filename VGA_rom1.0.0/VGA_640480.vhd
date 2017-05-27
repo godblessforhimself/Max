@@ -7,13 +7,19 @@ entity vga640480 is
 	 port(
 			rx,ry,mx,my :         in std_logic_vector(9 downto 0);                   --人物，鼠标坐标
 
-			address,	c_address	:		    out	std_logic_vector(11 DOWNTO 0);
+			address,	c_address , b_address:		    out	std_logic_vector(11 DOWNTO 0);
 			reset       :         in  std_logic;
 			clk25:		    out std_logic; 
-			q, c_q  	   :		    in std_logic_vector(8 downto 0);
+			q, c_q ,b_q 	   :		    in std_logic_vector(8 downto 0);
 			clk_0       :         in  std_logic; 
 			hs,vs       :         out std_logic; --��ͬ������ͬ���ź�
-			r,g,b       :         out std_logic_vector(2 downto 0)
+			r,g,b       :         out std_logic_vector(2 downto 0);
+			----------------------------box--------------------------
+			enable : out std_logic;
+			finish : in std_logic;
+			total : in std_logic_vector(4 downto 0);
+			boxes : in std_logic_vector(760 downto 1)
+			---------------------------------------------------------
 
 	  );
 end vga640480;
@@ -66,11 +72,11 @@ begin
 	   		vector_y <= (others=>'0');
 	  	elsif clk'event and clk='1' then
 	   		if vector_x=799 then
-	    		if vector_y=524 then
-	     			vector_y <= (others=>'0');
-	    		else
-	     			vector_y <= vector_y + 1;
-	    		end if;
+					if vector_y=524 then
+						vector_y <= (others=>'0');
+					else
+						vector_y <= vector_y + 1;
+					end if;
 	   		end if;
 	  	end if;
 	 end process;
@@ -79,12 +85,12 @@ begin
 	 process(clk,reset) --��ͬ���źŲ�����ͬ������96��ǰ��16��
 	 begin
 		  if reset='0' then
-		   hs1 <= '1';
+				hs1 <= '1';
 		  elsif clk'event and clk='1' then
 		   	if vector_x>=656 and vector_x<752 then
-		    	hs1 <= '0';
+					hs1 <= '0';
 		   	else
-		    	hs1 <= '1';
+					hs1 <= '1';
 		   	end if;
 		  end if;
 	 end process;
@@ -96,9 +102,9 @@ begin
 	   		vs1 <= '1';
 	  	elsif clk'event and clk='1' then
 	   		if vector_y>=490 and vector_y<492 then
-	    		vs1 <= '0';
+					vs1 <= '0';
 	   		else
-	    		vs1 <= '1';
+					vs1 <= '1';
 	   		end if;
 	  	end if;
 	 end process;
@@ -122,22 +128,16 @@ begin
 	  	end if;
 	 end process;
 	
- -----------------------------------------------------------------------
-	
+ -----------------------------------------------------------------------	
 	process(reset, clk, vector_x, vector_y) -- XY���궨λ����
-		variable role_x, role_y, mouse_x, mouse_y: integer:=0;
+		variable role_x, role_y, mouse_x, mouse_y, brick_x, brick_y, tmp: integer:=0;
 		variable flag: std_logic:= '0'; 
 	begin  
 		if reset='0' then
 				r1 <= (others => '0');
 				g1	<= (others => '0');
 				b1	<= (others => '0');	
-		elsif (clk'event and clk = '1') then
-			--每来一个时钟，则
-			--鼠标
-			--人物
-			--物体
-			--背景
+		elsif (clk'event and clk = '1') then		
 			if vector_x >= 0 and vector_x < 640 and vector_y >= 0 and vector_y < 480 then
 					role_x:= conv_integer(vector_x) - conv_integer(rx);
 					role_y:= conv_integer(vector_y) - conv_integer(ry);
@@ -155,24 +155,40 @@ begin
 					end if;
 					
 					if flag = '0' then
-						if (role_x >= -32 and role_x < 32) and (role_y >= -32 and role_y < 32) then
-							address<=conv_std_logic_vector((role_y + 32) * 64 + role_x + 32, 12);
-							if q = "111111111" then
-								r1<="000";
-								g1<="110";
-								b1<="000";
-							else
+						if (role_x >= -32 and role_x < 32) and (role_y >= -64 and role_y < 0) then
+							address<=conv_std_logic_vector((role_y + 64) * 64 + role_x + 32, 12);
+							if q /= "111111111" then
+								flag:= '1';
 								r1<=q(2 downto 0);
 								g1<=q(5 downto 3);
 								b1<=q(8 downto 6);
 							end if;	
+						end if;
+					end if;
+					
+					if flag = '0' then
+						tmp:= 761;
+						for i in 1 to 20 loop
+							tmp:= tmp - 38;
+							if i <= conv_integer(total) then
+								if vector_x >= boxes(tmp + 37 downto tmp + 28) and vector_x <= boxes(tmp + 18 downto tmp + 9) and 480 - vector_y >= boxes(tmp + 27 downto tmp + 19) and 480 - vector_y <= boxes(tmp + 8 downto tmp) then
+									flag:= '1';
+									brick_x:= conv_integer(vector_x) - conv_integer(boxes(tmp + 37 downto tmp + 28));
+									brick_y:= 480 - conv_integer(vector_y) - conv_integer(boxes(tmp + 27 downto tmp + 19));
+								end if;
+							end if;
+						end loop;
+						if flag = '1' then
+							b_address<=conv_std_logic_vector( (conv_integer(brick_y) mod 64) * 64 + (conv_integer(brick_x) mod 64), 12);
+							r1<=b_q(2 downto 0);
+							g1<=b_q(5 downto 3);
+							b1<=b_q(8 downto 6);
 						else
 							r1<="000";
 							g1<="110";
 							b1<="000";
 						end if;
 					end if;
-					
 			else
 				r1<="000";
 				g1<="000";
@@ -194,6 +210,15 @@ begin
 			b	<= (others => '0');
 		end if;
 	end process;
-
+	
+	
+	process(clk)
+	begin
+		if vector_y = 500 and vector_x = 700 then
+			enable<= '0';
+		elsif vector_y = 510 and vector_x = 720 then
+			enable<= '1';
+		end if;
+	end process;
 end behavior;
 
