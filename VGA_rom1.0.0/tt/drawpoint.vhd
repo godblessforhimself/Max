@@ -42,7 +42,7 @@ signal xb,yb: std_logic_vector(9 downto 0);
 signal xr,yr: std_logic_vector(10 downto 0);
 signal xs,ys: std_logic_vector(10 downto 0);
 constant sixhundred: std_logic_vector(9 downto 0):= "1001011011";
-constant lowx,lowy: std_logic_vector(9 downto 0) := "0000001010"; --40
+constant lowx,lowy: std_logic_vector(9 downto 0) := "0000001010"; --10
 constant topx: std_logic_vector(9 downto 0) := "1001011000";--600
 constant topy: std_logic_vector(9 downto 0):= "0110111000";--440
 begin
