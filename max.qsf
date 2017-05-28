@@ -46,25 +46,19 @@ set_global_assignment -name VHDL_FILE vhddoc/vga640480.vhd
 set_global_assignment -name VHDL_FILE vhddoc/sd_test.vhd
 set_global_assignment -name VHDL_FILE vhddoc/screenCoordinate.vhd
 set_global_assignment -name VHDL_FILE vhddoc/romOfBox.vhd
-set_global_assignment -name VHDL_FILE vhddoc/r.vhd
 set_global_assignment -name VHDL_FILE vhddoc/ps2_mouse.vhd
 set_global_assignment -name VHDL_FILE vhddoc/main.vhd
 set_global_assignment -name VHDL_FILE vhddoc/gameControlUnit.vhd
-set_global_assignment -name VHDL_FILE vhddoc/g.vhd
 set_global_assignment -name VHDL_FILE vhddoc/fp.vhd
 set_global_assignment -name VHDL_FILE vhddoc/drawpoint.vhd
-set_global_assignment -name VHDL_FILE vhddoc/c_r.vhd
-set_global_assignment -name VHDL_FILE vhddoc/c_g.vhd
-set_global_assignment -name VHDL_FILE vhddoc/c_b.vhd
 set_global_assignment -name VHDL_FILE vhddoc/boxCollector.vhd
-set_global_assignment -name VHDL_FILE vhddoc/b_r.vhd
-set_global_assignment -name VHDL_FILE vhddoc/b_g.vhd
-set_global_assignment -name VHDL_FILE vhddoc/b_b.vhd
-set_global_assignment -name VHDL_FILE vhddoc/b.vhd
+set_global_assignment -name VHDL_FILE vhddoc/vga_rom.vhd
+set_global_assignment -name VHDL_FILE vhddoc/role_rom.vhd
+set_global_assignment -name VHDL_FILE vhddoc/brush_rom.vhd
+set_global_assignment -name VHDL_FILE vhddoc/box_rom.vhd
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
 set_global_assignment -name SMART_RECOMPILE ON
 set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
@@ -146,3 +140,5 @@ set_location_assignment PIN_Y26 -to sram_data[0]
 set_location_assignment PIN_AD25 -to sram_rw[1]
 set_location_assignment PIN_AC25 -to sram_rw[0]
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

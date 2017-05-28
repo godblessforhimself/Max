@@ -7,11 +7,11 @@ entity vga640480 is
 	 port(
 			rx,ry,mx,my :         in std_logic_vector(9 downto 0);                   --人物，鼠标坐标
 
-			address,	c_address , b_address:		    out	std_logic_vector(11 DOWNTO 0);
-
+			rom_address:		    out	std_logic_vector(11 DOWNTO 0);
+			rom_choice :          out  std_logic_vector(2 downto 0);
 			reset       :         in  std_logic;
 			clk25:		    out std_logic; 
-			q, c_q ,b_q 	   :		    in std_logic_vector(8 downto 0);
+			rom_q :		    in std_logic_vector(8 downto 0);
 			clk_0       :         in  std_logic; 
 			hs,vs       :         out std_logic; --��ͬ������ͬ���ź�
 			r,g,b       :         out std_logic_vector(2 downto 0);
@@ -148,23 +148,25 @@ begin
 					mouse_y:= conv_integer(vector_y) - conv_integer(my);
 					flag:= '0';
 					if  (mouse_x >= 0 and mouse_x < 48) and (mouse_y >= -48 and mouse_y < 0) then
-						c_address<=conv_std_logic_vector((mouse_y + 48) * 48 + mouse_x, 12);
-						if c_q /= "111111111" then
+						rom_address<=conv_std_logic_vector((mouse_y + 48) * 48 + mouse_x, 12);
+						rom_choice<= "001";
+						if rom_q /= "111111111" then
 							flag:= '1';
-							r1<=c_q(2 downto 0);
-							g1<=c_q(5 downto 3);
-							b1<=c_q(8 downto 6);
+							r1<=rom_q(8 downto 6);
+							g1<=rom_q(5 downto 3);
+							b1<=rom_q(2 downto 0);
 						end if;
 					end if;
 					
 					if flag = '0' then
 						if (role_x >= -32 and role_x < 32) and (role_y >= -64 and role_y < 0) then
-							address<=conv_std_logic_vector((role_y + 64) * 64 + role_x + 32, 12);
-							if q /= "111111111" then
+							rom_address<=conv_std_logic_vector((role_y + 64) * 64 + role_x + 32, 12);
+							rom_choice<= "000";
+							if rom_q /= "111111111" then
 								flag:= '1';
-								r1<=q(2 downto 0);
-								g1<=q(5 downto 3);
-								b1<=q(8 downto 6);
+								r1<=rom_q(8 downto 6);
+								g1<=rom_q(5 downto 3);
+								b1<=rom_q(2 downto 0);
 							end if;	
 						end if;
 					end if;
@@ -182,10 +184,11 @@ begin
 							end if;
 						end loop;
 						if flag = '1' then
-							b_address<=conv_std_logic_vector( (conv_integer(brick_y) mod 64) * 64 + (conv_integer(brick_x) mod 64), 12);
-							r1<=b_q(2 downto 0);
-							g1<=b_q(5 downto 3);
-							b1<=b_q(8 downto 6);
+							rom_address<=conv_std_logic_vector( (conv_integer(brick_y) mod 64) * 64 + (conv_integer(brick_x) mod 64), 12);
+							rom_choice<= "010";
+							r1<=rom_q(8 downto 6);
+							g1<=rom_q(5 downto 3);
+							b1<=rom_q(2 downto 0);
 						else
 							if ready = '1' then
 								sram_address<=conv_std_logic_vector(conv_integer(vector_y) * 640 + conv_integer(vector_x) + 2, 21);
