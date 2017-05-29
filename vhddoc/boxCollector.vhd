@@ -41,7 +41,7 @@ port(
 );
 end component;
 
-constant totalObjs : integer := 6;
+constant totalObjs : integer := 500;
 signal address : std_logic_vector(8 downto 0) := "000000000";
 signal box : std_logic_vector(63 downto 0);
 begin

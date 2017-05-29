@@ -54,7 +54,7 @@ end component;
 --type statsOfCoordinateCounting is (LR, fall, jump, down);
 --type statsOfForControl is (before, in);
 type myBox is array(0 to 3) of std_logic_vector(15 downto 0);
-constant totalObjs : integer := 6;
+constant totalObjs : integer := 500;
 constant zeros : std_logic_vector(20 downto 0) := "000000000000000000000";
 constant step : std_logic_vector(15 downto 0) := "0000000000000111";
 constant ijump_v : std_logic_vector(15 downto 0) := "0000000000001111";
@@ -98,7 +98,7 @@ begin
 							GPS <= "010";
 							PS <= "00";
 						end if;
-						absoluteX <= screenLEdge;
+						absoluteX <= zeros(15 downto 7) & "1" & zeros(5 downto 0);
 						absoluteY <= zeros(15 downto 9) & "1" & zeros(7 downto 0);
 						
 					when "010" =>
