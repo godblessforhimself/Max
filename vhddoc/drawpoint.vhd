@@ -50,23 +50,10 @@ begin
 	left_button <= le;
 	right_button <= ri;
 	middle_button <= mi;
-	process (xb, yb)
-	begin
-		if xb > lowx and xb < topx then
-			mousex <= xb;
-		elsif xb <= lowx then
-			mousex <= lowx;
-		elsif xb >= topx then
-			mousex <= topx;
-		end if;
-		if yb > lowy and yb < topy then
-			mousey <= yb;
-		elsif yb <= lowy then
-			mousey <= lowy;
-		elsif yb >= topy then
-			mousey <= topy;
-		end if;
-	end process;
+	
+	mousex <= xb;
+	mousey <= yb;
+	
 	mouse: ps2_mouse port map(clk_in => clk100, reset_in=>reset_in,ps2_clk=>ps2_clk,ps2_data=>ps2_data, left_button=>le, right_button=>ri, middle_button=>mi, mousex=> xb, mousey=>yb);
 	process(drawbutton)
 	begin

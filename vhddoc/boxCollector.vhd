@@ -73,9 +73,9 @@ begin
 						ay := ay - ly;
 						boxes(tot downto tot - 37) <= ix(9 downto 0) & iy(8 downto 0) & ax(9 downto 0) & ay(8 downto 0);
 						total <= total + '1';
+						tot := tot - 38;
 					end if;
 					address <= address + '1';
-					tot := tot - 38;
 				end if;
 			end if;
 		end if;
