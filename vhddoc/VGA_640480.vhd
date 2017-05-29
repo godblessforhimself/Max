@@ -6,7 +6,7 @@ use		ieee.std_logic_arith.all;
 entity vga640480 is
 	 port(
 			rx,ry,mx,my :         in std_logic_vector(9 downto 0);                   --人物，鼠标坐标
-
+			lx          :         in std_logic_vector(15 downto 0);                  --absolute coordinate
 			rom_role_address, rom_brush_address, rom_box_address:		    out	std_logic_vector(11 DOWNTO 0);
 			reset       :         in  std_logic;
 			clk25:		    out std_logic; 
@@ -187,7 +187,7 @@ begin
 							b1<=rom_box_q(2 downto 0);
 						else
 							if ready = '1' then
-								sram_address<=conv_std_logic_vector(conv_integer(vector_y) * 640 + conv_integer(vector_x) + 2, 21);
+								sram_address<=conv_std_logic_vector(conv_integer(vector_y) * 640 + ((conv_integer(vector_x) + conv_integer(lx)) mod 640) + 2, 21);
 								r1<=in_data(31 downto 29);
 								g1<=in_data(28 downto 26);
 								b1<=in_data(25 downto 23);

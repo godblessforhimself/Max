@@ -33,7 +33,7 @@ architecture one of main is
 component vga640480 is
 	 port(
 			rx,ry,mx,my    :      in std_LOGIC_vector(9 downto 0);
-			
+			lx             :      in std_logic_vector(15 downto 0);          --absolute coordinate
 			rom_role_address, rom_brush_address, rom_box_address	:		  out	STD_LOGIC_VECTOR(11 DOWNTO 0);
 			
 			reset       :         in  STD_LOGIC;
@@ -176,6 +176,7 @@ begin
 --
 u1: vga640480 port map(
 						rx=>xx, ry=>yy, mx=>mouse_x, my=>mouse_y,
+						lx=>lx,
 						rom_role_address=>role_address_tmp, rom_brush_address=>brush_address_tmp, rom_box_address=>box_address_tmp,
 						reset=>reset, 
 						clk25=>clk25,
@@ -222,8 +223,8 @@ mouse: drawpoint port map(
 
 gc: gameControlUnit port map(
 						clk_25M=>clk25, clk_100M=>clk_0,
-						moveL=>lef,
-						moveR=>rig,
+						moveL=>'0',
+						moveR=>'1',
 						jump=>mid,
 						player_x=>xxx,
 						player_y=>yyy
