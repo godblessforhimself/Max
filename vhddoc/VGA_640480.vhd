@@ -181,7 +181,7 @@ begin
 							end if;
 						end loop;
 						if flag = '1' then
-							rom_box_address<=conv_std_logic_vector( (conv_integer(brick_y) mod 64) * 64 + (conv_integer(brick_x) mod 64), 12);
+							rom_box_address<=conv_std_logic_vector((brick_y mod 64) * 64 + (brick_x mod 64), 12);
 							r1<=rom_box_q(8 downto 6);
 							g1<=rom_box_q(5 downto 3);
 							b1<=rom_box_q(2 downto 0);
