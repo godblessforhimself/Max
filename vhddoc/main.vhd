@@ -223,7 +223,7 @@ keyboard: key port map (
 
 gc: gameControlUnit port map(
 						clk_25M=>clk25, clk_100M=>clk_0,
-						moveL=>'0',
+						moveL=>adws(3),
 						moveR=>'1',
 						jump=>adws(1),
 						player_x=>xxx,

@@ -233,7 +233,7 @@ begin
 				if(absoluteX > nextSaveX and PS = "00") then
 					lastSaveX <= absoluteX;
 					lastSaveY <= absoluteY;
-					nextSaveX <= nextSaveX + (zeros(15 downto 13) & "1" & zeros(11 downto 0));
+					nextSaveX <= absoluteX + (zeros(15 downto 13) & "1" & zeros(11 downto 0));
 				end if;
 			else
 				enableOfFor <= '0';
