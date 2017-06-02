@@ -147,27 +147,29 @@ begin
 					mouse_x:= conv_integer(vector_x) - conv_integer(mx);
 					mouse_y:= conv_integer(vector_y) - conv_integer(my);
 					flag:= '0';
-					if  (mouse_x >= 0 and mouse_x < 48) and (mouse_y >= -48 and mouse_y < 0) then
-						rom_brush_address<=conv_std_logic_vector((mouse_y + 48) * 48 + mouse_x, 12);
-						if rom_brush_q /= "111111111" then
-							flag:= '1';
-							r1<=rom_brush_q(8 downto 6);
-							g1<=rom_brush_q(5 downto 3);
-							b1<=rom_brush_q(2 downto 0);
-						end if;
-					end if;
+--					if  (mouse_x >= 0 and mouse_x < 48) and (mouse_y >= -48 and mouse_y < 0) then
+--						rom_brush_address<=conv_std_logic_vector((mouse_y + 48) * 48 + mouse_x, 12);
+--						if rom_brush_q /= "111111111" then
+--							flag:= '1';
+--							r1<=rom_brush_q(8 downto 6);
+--							g1<=rom_brush_q(5 downto 3);
+--							b1<=rom_brush_q(2 downto 0);
+--						end if;
+--					end if;
 					
 					if flag = '0' then
 						heart_flag:= '0';
-						for i in 1 to 3 loop
-							if vector_y >= 20 and vector_y <= 84 and vector_x >= i * 64 + 20 and vector_x <= i * 64 + 84 then 
-								heart_flag:= '1';
-								heart_x:= conv_integer(vector_x) - (i * 64 + 20);
-								heart_y:= conv_integer(vector_y) - 20;
+						for i in 1 to 10 loop
+							if i <= conv_integer(heart) then
+								if vector_y >= 20 and vector_y < 52 and vector_x >= (i - 1) * 32 + 20 and vector_x < (i - 1) * 32 + 52 then 
+									heart_flag:= '1';
+									heart_x:= conv_integer(vector_x) - ((i - 1) * 32 + 20);
+									heart_y:= conv_integer(vector_y) - 20;
+								end if;
 							end if;
 						end loop;
 						if heart_flag = '1' then
-							rom_heart_address<=conv_std_logic_vector(heart_y * 64 + heart_x, 12);
+							rom_heart_address<=conv_std_logic_vector(heart_y * 32 + heart_x, 12);
 							if rom_heart_q /= "111111111" then
 								flag:= '1';
 								r1<=rom_heart_q(8 downto 6);
