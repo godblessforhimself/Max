@@ -32,13 +32,14 @@ architecture one of main is
 
 component vga640480 is
 	 port(
+			heart          :      in std_logic_vector(2 downto 0);
 			rx,ry,mx,my    :      in std_LOGIC_vector(9 downto 0);
 			lx             :      in std_logic_vector(15 downto 0);          --absolute coordinate
-			rom_role_address, rom_brush_address, rom_box_address	:		  out	STD_LOGIC_VECTOR(11 DOWNTO 0);
+			rom_role_address, rom_brush_address, rom_box_address, rom_heart_address:		  out	STD_LOGIC_VECTOR(11 DOWNTO 0);
 			
 			reset       :         in  STD_LOGIC;
 			clk25       :		  out std_logic; 
-			rom_role_q, rom_brush_q, rom_box_q  :		  in STD_LOGIC_vector(8 downto 0);
+			rom_role_q, rom_brush_q, rom_box_q, rom_heart_q  :		  in STD_LOGIC_vector(8 downto 0);
 			clk_0       :         in  STD_LOGIC; --100Mʱ������
 			hs,vs       :         out STD_LOGIC; --��ͬ������ͬ���ź�
 			r,g,b       :         out STD_LOGIC_vector(2 downto 0);
@@ -56,9 +57,9 @@ end component;
 
 component vga_rom is
 port(
-	role_address, brush_address, box_address		: IN STD_LOGIC_VECTOR (11 DOWNTO 0);
+	role_address, brush_address, box_address, heart_address		: IN STD_LOGIC_VECTOR (11 DOWNTO 0);
 	clock		: IN STD_LOGIC ;
-	role_q, brush_q, box_q		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0)
+	role_q, brush_q, box_q, heart_q		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0)
 );
 end component;
 ----------------------------mouse-------------------------------
@@ -139,10 +140,10 @@ end component;
 ----------------------------------------------
 
 -----------------------vga-------------------------------------
-signal role_address_tmp, brush_address_tmp, box_address_tmp: std_logic_vector(11 downto 0);
+signal role_address_tmp, brush_address_tmp, box_address_tmp, heart_address_tmp: std_logic_vector(11 downto 0);
 signal clk25: std_logic;
-signal role_q_tmp, brush_q_tmp, box_q_tmp: std_logic_vector(8 downto 0);
-signal choice_tmp: std_logic_vector(2 downto 0);
+signal role_q_tmp, brush_q_tmp, box_q_tmp, heart_q_tmp: std_logic_vector(8 downto 0);
+signal heart_tmp: std_logic_vector(2 downto 0);
 signal xx: std_LOGIC_VECTOR(9 downto 0):="0100101100";
 signal yy: std_LOGIC_VECTOR(9 downto 0):="0011100110";
 signal enable, finish : std_logic;
@@ -175,12 +176,13 @@ signal lx, ly, rx, ry : std_logic_vector(15 downto 0);
 begin
 --
 u1: vga640480 port map(
+						heart=>heart_tmp,
 						rx=>xx, ry=>yy, mx=>mouse_x, my=>mouse_y,
 						lx=>lx,
-						rom_role_address=>role_address_tmp, rom_brush_address=>brush_address_tmp, rom_box_address=>box_address_tmp,
+						rom_role_address=>role_address_tmp, rom_brush_address=>brush_address_tmp, rom_box_address=>box_address_tmp, rom_heart_address=>heart_address_tmp,
 						reset=>reset, 
 						clk25=>clk25,
-						rom_role_q=>role_q_tmp, rom_brush_q=>brush_q_tmp, rom_box_q=>box_q_tmp,
+						rom_role_q=>role_q_tmp, rom_brush_q=>brush_q_tmp, rom_box_q=>box_q_tmp, rom_heart_q=>heart_q_tmp,
 						clk_0=>clk_0, 
 						hs=>hs, vs=>vs, 
 						r=>rr, g=>gg, b=>bb,
@@ -194,9 +196,9 @@ u1: vga640480 port map(
 					);
 
 rom: vga_rom port map(
-					role_address=>role_address_tmp, brush_address=>brush_address_tmp, box_address=>box_address_tmp,
+					role_address=>role_address_tmp, brush_address=>brush_address_tmp, box_address=>box_address_tmp, heart_address=>heart_q_tmp,
 					clock=>clk_0,
-					role_q=>role_q_tmp, brush_q=>brush_q_tmp, box_q=>box_q_tmp
+					role_q=>role_q_tmp, brush_q=>brush_q_tmp, box_q=>box_q_tmp, heart_q=>heart_q_tmp
 					);				
 					
 mouse: drawpoint port map(
