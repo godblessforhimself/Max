@@ -107,12 +107,12 @@ port(
 );
 end component;
 -----------------keyboard------------------
---component key is                                       
---port(
---datain,clkin,fclk,rst_in: in std_logic;
---keys:out std_logic_vector(3 downto 0)
---);
---end component;
+component key is                                       
+port(
+datain,clkin,fclk,rst_in: in std_logic;
+keys:out std_logic_vector(3 downto 0)
+);
+end component;
 --------------------------------------------
 
 ---------------------sdcard-------------------
@@ -213,19 +213,19 @@ mouse: drawpoint port map(
 						drawbutton=>drawbutton
 						);
 
---keyboard: key port map (
---							datain=>ps2data,
---							clkin=>ps2clk,
---							fclk=>clk_0,
---							rst_in=> not reset,
---							keys=>adws
---						);
+keyboard: key port map (
+							datain=>ps2data,
+							clkin=>ps2clk,
+							fclk=>clk_0,
+							rst_in=> not reset,
+							keys=>adws
+						);
 
 gc: gameControlUnit port map(
 						clk_25M=>clk25, clk_100M=>clk_0,
 						moveL=>'0',
 						moveR=>'1',
-						jump=>mid,
+						jump=>adws(1),
 						player_x=>xxx,
 						player_y=>yyy
                    );

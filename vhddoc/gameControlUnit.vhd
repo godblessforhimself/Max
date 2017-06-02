@@ -56,10 +56,11 @@ end component;
 type myBox is array(0 to 3) of std_logic_vector(15 downto 0);
 constant totalObjs : integer := 500;
 constant zeros : std_logic_vector(20 downto 0) := "000000000000000000000";
-constant step : std_logic_vector(15 downto 0) := "0000000000000111";
-constant ijump_v : std_logic_vector(15 downto 0) := "0000000000001111";
+signal step : std_logic_vector(15 downto 0) := "0000000000000111";
+signal ijump_v : std_logic_vector(15 downto 0) := "0000000000001111";
 constant screenLEdge : std_logic_vector(15 downto 0) := "0000000100000000";
 constant screenREdge : std_logic_vector(15 downto 0) := "0000001100000000";
+signal lastSaveX, lastSaveY, nextSaveX : std_logic_vector(15 downto 0);
 signal absoluteX, absoluteY, lastX, lastY : std_logic_vector(15 downto 0);
 signal jump_v : std_logic_vector(15 downto 0);
 signal addressOfBox : std_logic_vector(8 downto 0);
@@ -77,7 +78,7 @@ signal enableOfFor : std_logic;
 signal dir : std_logic_vector(2 downto 0);
 signal endFor : std_logic;
 signal clk_1M : std_logic;
-
+signal life : std_logic_vector(1 downto 0);
 --------------------------end signal & variable define---------------------------
 
 begin
@@ -90,16 +91,24 @@ begin
 			if(CUS = '0') then
 				case(GPS) is
 					when "000" =>
+						life <= "01";
 						GPS <= "001";
 						IWBS <= '0';
-
+						lastSaveX <= zeros(15 downto 7) & "1" & zeros(5 downto 0);
+						lastSaveY <= zeros(15 downto 9) & "1" & zeros(7 downto 0);
+						nextSaveX <= zeros(15 downto 13) & "1" & zeros(11 downto 0);
+						
 					when "001" =>
-						if(jump = '1') then 
+						if(moveR = '1' and life /= "00") then 
 							GPS <= "010";
 							PS <= "00";
+						elsif(life = "00") then
+							GPS <= "000";
+							CUS <= '1';
 						end if;
-						absoluteX <= zeros(15 downto 7) & "1" & zeros(5 downto 0);
-						absoluteY <= zeros(15 downto 9) & "1" & zeros(7 downto 0);
+						absoluteX <= lastSaveX;
+						absoluteY <= lastSaveY;
+						life <= life + '1';
 						
 					when "010" =>
 						case (CCS) is
@@ -221,8 +230,13 @@ begin
 				end case;
 				player_x <= absoluteX;
 				player_y <= absoluteY;
+				if(absoluteX > nextSaveX and PS = "00") then
+					lastSaveX <= absoluteX;
+					lastSaveY <= absoluteY;
+					nextSaveX <= nextSaveX + (zeros(15 downto 13) & "1" & zeros(11 downto 0));
+				end if;
 			else
-				--enableOfFor <= '0';
+				enableOfFor <= '0';
 				cntofControlUnit <= cntOfControlUnit + '1';
 				if(cntOfControlUnit(14) = '1') then
 					cntOfControlUnit <= zeros;
