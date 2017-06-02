@@ -127,6 +127,7 @@ set_location_assignment PIN_AD25 -to sram_rw[1]
 set_location_assignment PIN_AC25 -to sram_rw[0]
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
 
+set_global_assignment -name VHDL_FILE vhddoc/heart_rom.vhd
 set_global_assignment -name VHDL_FILE vhddoc/VGA_640480.vhd
 set_global_assignment -name VHDL_FILE vhddoc/sd_test.vhd
 set_global_assignment -name VHDL_FILE vhddoc/screenCoordinate.vhd
