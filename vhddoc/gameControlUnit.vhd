@@ -6,11 +6,12 @@ use ieee.std_logic_arith.all;
 entity gameControlUnit is
 port(
 	clk_25M, clk_100M : in std_logic;
-	moveL, moveR, jump : in std_logic;
+	moveL, moveR, jump, moveD : in std_logic;
 	--test : buffer std_logic;
 	--test_inside : buffer std_logic;
 	--test_dir : buffer std_logic_vector(2 downto 0);
 	--box : buffer std_logic_vector(63 downto 0);
+	heart : buffer std_logic_vector(2 downto 0);
 	player_x, player_y : buffer std_logic_vector(15 downto 0)
 	--background : buffer std_logic_vector(10 downto 0)
 	);
@@ -78,7 +79,7 @@ signal enableOfFor : std_logic;
 signal dir : std_logic_vector(2 downto 0);
 signal endFor : std_logic;
 signal clk_1M : std_logic;
-signal life : std_logic_vector(1 downto 0);
+signal life : std_logic_vector(2 downto 0);
 --------------------------end signal & variable define---------------------------
 
 begin
@@ -91,7 +92,7 @@ begin
 			if(CUS = '0') then
 				case(GPS) is
 					when "000" =>
-						life <= "01";
+						life <= "011";
 						GPS <= "001";
 						IWBS <= '0';
 						lastSaveX <= zeros(15 downto 7) & "1" & zeros(5 downto 0);
@@ -99,16 +100,17 @@ begin
 						nextSaveX <= zeros(15 downto 13) & "1" & zeros(11 downto 0);
 						
 					when "001" =>
-						if(moveR = '1' and life /= "00") then 
+						if(moveD = '1' and life /= "000") then 
 							GPS <= "010";
 							PS <= "00";
-						elsif(life = "00") then
+							
+						elsif(life = "000") then
 							GPS <= "000";
-							CUS <= '1';
+							--CUS <= '1';
 						end if;
 						absoluteX <= lastSaveX;
 						absoluteY <= lastSaveY;
-						life <= life + '1';
+						
 						
 					when "010" =>
 						case (CCS) is
@@ -218,6 +220,7 @@ begin
 					when "011" =>
 						GPS <= "001";
 						CUS <= '1';
+						life <= life - '1';
 						
 					when "100" =>
 						GPS <= "001";
@@ -230,6 +233,7 @@ begin
 				end case;
 				player_x <= absoluteX;
 				player_y <= absoluteY;
+				heart <= life;
 				if(absoluteX > nextSaveX and PS = "00") then
 					lastSaveX <= absoluteX;
 					lastSaveY <= absoluteY;

@@ -40,8 +40,8 @@ component vga640480 is
 			reset       :         in  STD_LOGIC;
 			clk25       :		  out std_logic; 
 			rom_role_q, rom_brush_q, rom_box_q, rom_heart_q  :		  in STD_LOGIC_vector(8 downto 0);
-			clk_0       :         in  STD_LOGIC; --100Mʱ������
-			hs,vs       :         out STD_LOGIC; --��ͬ������ͬ���ź�
+			clk_0       :         in  STD_LOGIC; --100M时锟斤拷锟斤拷锟斤拷
+			hs,vs       :         out STD_LOGIC; --锟斤拷同锟斤拷锟斤拷锟斤拷同锟斤拷锟脚猴拷
 			r,g,b       :         out STD_LOGIC_vector(2 downto 0);
 			----------------------------box--------------------------
 			enable : out std_logic;
@@ -82,7 +82,8 @@ end component;
 component gameControlUnit is
 port(
 	clk_25M, clk_100M: in std_logic;
-	moveL, moveR, jump : in std_logic;
+	moveL, moveR, jump, moveD : in std_logic;
+	heart : buffer std_logic_vector(2 downto 0);
 	player_x, player_y : buffer std_logic_vector(15 downto 0) := "00000000000"
 	);
 end component;
@@ -196,7 +197,7 @@ u1: vga640480 port map(
 					);
 
 rom: vga_rom port map(
-					role_address=>role_address_tmp, brush_address=>brush_address_tmp, box_address=>box_address_tmp, heart_address=>heart_q_tmp,
+					role_address=>role_address_tmp, brush_address=>brush_address_tmp, box_address=>box_address_tmp, heart_address=>heart_address_tmp,
 					clock=>clk_0,
 					role_q=>role_q_tmp, brush_q=>brush_q_tmp, box_q=>box_q_tmp, heart_q=>heart_q_tmp
 					);				
@@ -225,9 +226,11 @@ keyboard: key port map (
 
 gc: gameControlUnit port map(
 						clk_25M=>clk25, clk_100M=>clk_0,
-						moveL=>adws(3),
+						moveL=>'0',
 						moveR=>'1',
 						jump=>adws(1),
+						moveD=>adws(0),
+						heart=>heart_tmp,
 						player_x=>xxx,
 						player_y=>yyy
                    );
