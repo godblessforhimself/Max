@@ -5,12 +5,13 @@ use		ieee.std_logic_arith.all;
 
 entity vga640480 is
 	 port(
+			heart       :         in std_logic_vector(2 downto 0);
 			rx,ry,mx,my :         in std_logic_vector(9 downto 0);                   --人物，鼠标坐标
 			lx          :         in std_logic_vector(15 downto 0);                  --absolute coordinate
-			rom_role_address, rom_brush_address, rom_box_address:		    out	std_logic_vector(11 DOWNTO 0);
+			rom_role_address, rom_brush_address, rom_box_address, rom_heart_address:		    out	std_logic_vector(11 DOWNTO 0);
 			reset       :         in  std_logic;
 			clk25:		    out std_logic; 
-			rom_role_q, rom_brush_q, rom_box_q                  :		    in std_logic_vector(8 downto 0);
+			rom_role_q, rom_brush_q, rom_box_q, rom_heart_q:		    in std_logic_vector(8 downto 0);
 			clk_0       :         in  std_logic; 
 			hs,vs       :         out std_logic; --��ͬ������ͬ���ź�
 			r,g,b       :         out std_logic_vector(2 downto 0);
@@ -132,8 +133,8 @@ begin
 	
  -----------------------------------------------------------------------	
 	process(reset, clk, vector_x, vector_y) -- XY���궨λ����
-		variable role_x, role_y, mouse_x, mouse_y, brick_x, brick_y, tmp: integer:=0;
-		variable flag: std_logic:= '0'; 
+		variable role_x, role_y, mouse_x, mouse_y, brick_x, brick_y, heart_x, heart_y, tmp: integer:=0;
+		variable flag, heart_flag: std_logic:= '0'; 
 	begin  
 		if reset='0' then
 				r1 <= (others => '0');
@@ -153,6 +154,26 @@ begin
 							r1<=rom_brush_q(8 downto 6);
 							g1<=rom_brush_q(5 downto 3);
 							b1<=rom_brush_q(2 downto 0);
+						end if;
+					end if;
+					
+					if flag = '0' then
+						heart_flag:= '0';
+						for i in 1 to 3 loop
+							if vector_y >= 20 and vector_y <= 84 and vector_x >= i * 64 + 20 and vector_x <= i * 64 + 84 then 
+								heart_flag:= '1';
+								heart_x:= conv_integer(vector_x) - (i * 64 + 20);
+								heart_y:= conv_integer(vector_y) - 20;
+							end if;
+						end loop;
+						if heart_flag = '1' then
+							rom_heart_address<=conv_std_logic_vector(heart_y * 64 + heart_x, 12);
+							if rom_heart_q /= "111111111" then
+								flag:= '1';
+								r1<=rom_heart_q(8 downto 6);
+								g1<=rom_heart_q(5 downto 3);
+								b1<=rom_heart_q(2 downto 0);
+							end if;
 						end if;
 					end if;
 					
