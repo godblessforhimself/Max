@@ -84,6 +84,7 @@ end component;
 -------------------game--------------------
 component gameControlUnit is
 port(
+	ready : in std_logic;
 	clk_25M, clk_100M: in std_logic;
 	moveL, moveR, jump, moveD : in std_logic;
 	heart : buffer std_logic_vector(2 downto 0);
@@ -235,6 +236,7 @@ keyboard: key port map (
 						);
 
 gc: gameControlUnit port map(
+						ready=>ready,
 						clk_25M=>clk25, clk_100M=>clk_0,
 						moveL=>'0',
 						moveR=>'1',

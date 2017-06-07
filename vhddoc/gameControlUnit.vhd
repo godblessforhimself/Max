@@ -5,6 +5,7 @@ use ieee.std_logic_arith.all;
 
 entity gameControlUnit is
 port(
+	ready : in std_logic;
 	clk_25M, clk_100M : in std_logic;
 	moveL, moveR, jump, moveD : in std_logic;
 	--test : buffer std_logic;
@@ -104,7 +105,7 @@ begin
 							GPS <= "010";
 							PS <= "00";
 						
-						elsif(moveD = '1' and life /= "000" and life = "111") then
+						elsif(moveD = '1' and life = "111" and ready = '1') then
 							life <= "011";
 							GPS <= "010";
 							PS <= "00";
