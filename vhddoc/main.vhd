@@ -88,6 +88,7 @@ port(
 	clk_25M, clk_100M: in std_logic;
 	moveL, moveR, jump, moveD, dash : in std_logic;
 	heart : buffer std_logic_vector(2 downto 0);
+	dashEnergy : buffer std_logic_vector(2 downto 0);
 	player_x, player_y : buffer std_logic_vector(15 downto 0) := "00000000000"
 	);
 end component;
@@ -181,6 +182,7 @@ signal nouse: std_logic;
 signal xxx, yyy:std_LOGIC_vector(15 downto 0);
 signal px, py : std_logic_vector(15 downto 0);
 signal lx, ly, rx, ry : std_logic_vector(15 downto 0);
+signal dashEnergy : std_logic_vector(2 downto 0);
 
 --------------------------------------------------
 begin
@@ -244,6 +246,7 @@ gc: gameControlUnit port map(
 						moveD=>adws(0),
 						dash=>adws(2),
 						heart=>heart_tmp,
+						dashEnergy=>dashEnergy,
 						player_x=>xxx,
 						player_y=>yyy
                    );
