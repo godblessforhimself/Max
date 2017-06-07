@@ -23,9 +23,7 @@ entity vga640480 is
 			-----------------------------sram-------------------------
 			ready : in std_logic;
 			sram_address   :  out std_logic_vector(20 downto 0);
-			in_data        :  in  std_logic_vector(31 downto 0);
-			-------------------------------sd-------------------------
-			sd_choice: out std_logic_vector(1 downto 0)
+			in_data        :  in  std_logic_vector(31 downto 0)
 	  );
 end vga640480;
 
@@ -159,9 +157,8 @@ begin
 --						end if;
 --					end if;
 					if heart = "111" then
-						sd_choice<= "01";
 						if ready = '1' then
-							sram_address<=conv_std_logic_vector(conv_integer(vector_y) * 640 + conv_integer(vector_x) + 2, 21);
+							sram_address<=conv_std_logic_vector(conv_integer(vector_y) * 640 + conv_integer(vector_x) + 2 + 2 + (307200 - 512) * 2, 21);
 							r1<=in_data(31 downto 29);
 							g1<=in_data(28 downto 26);
 							b1<=in_data(25 downto 23);
@@ -223,7 +220,6 @@ begin
 								g1<=rom_box_q(5 downto 3);
 								b1<=rom_box_q(2 downto 0);
 							else
-								sd_choice<= "00";
 								if ready = '1' then
 									sram_address<=conv_std_logic_vector(conv_integer(vector_y) * 640 + ((conv_integer(vector_x) + conv_integer(lx)) mod 640) + 2, 21);
 									r1<=in_data(31 downto 29);

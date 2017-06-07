@@ -51,9 +51,7 @@ component vga640480 is
 			-----------------------------sram-------------------------
 			ready : in std_logic;
 			sram_address   :  out std_logic_vector(20 downto 0);
-			in_data        :  in  std_logic_vector(31 downto 0);
-			----------------------------sd----------------------------
-			sd_choice      : out std_logic_vector(1 downto 0)
+			in_data        :  in  std_logic_vector(31 downto 0)
 			
 	  );
 end component;
@@ -136,7 +134,6 @@ port (
     sram_data: inout std_logic_vector (31 downto 0);
     sram_rw:   buffer std_logic_vector (1 downto 0) := "11";
     
-	 choice:    in std_logic_vector(1 downto 0);
 	mode_ctrl: in std_logic;
 	rd : in std_logic;
 	reset_in : in std_logic;
@@ -147,7 +144,6 @@ end component;
 
 -----------------------vga-------------------------------------
 signal role_address_tmp, brush_address_tmp, box_address_tmp, heart_address_tmp: std_logic_vector(11 downto 0);
-signal sd_choice_tmp: std_logic_vector(1 downto 0);
 signal clk25: std_logic;
 signal role_q_tmp, brush_q_tmp, box_q_tmp, heart_q_tmp: std_logic_vector(8 downto 0);
 signal heart_tmp: std_logic_vector(2 downto 0);
@@ -204,9 +200,7 @@ u1: vga640480 port map(
 						-----------------------------sram-------------------------
 						ready=>ready,
 						sram_address=>sram_addr_vga,
-						in_data=>sram_data,
-						-----------------------------sd----------------------------
-						sd_choice=>sd_choice_tmp
+						in_data=>sram_data
 					);
 
 rom: vga_rom port map(
@@ -262,7 +256,6 @@ sd_card: sd_test port map(
 						sram_addr=>sram_addr_sd,
 						sram_data=>sram_data,
 						sram_rw=>sram_rw,
-						choice=>sd_choice_tmp,
 						mode_ctrl=>'0',
 						rd=>'0',
 						reset_in=>reset,
