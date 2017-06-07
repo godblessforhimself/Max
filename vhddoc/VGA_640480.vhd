@@ -9,6 +9,7 @@ entity vga640480 is
 			rx,ry,mx,my :         in std_logic_vector(9 downto 0);                   --人物，鼠标坐标
 			lx          :         in std_logic_vector(15 downto 0);                  --absolute coordinate
 			dashenergy, dashspeed: in std_logic_vector(2 downto 0);
+			victory     :         in std_logic;
 			rom_role_address, rom_brush_address, rom_box_address, rom_heart_address, rom_dash_address:		    out	std_logic_vector(11 DOWNTO 0);
 			reset       :         in  std_logic;
 			clk25:		    out std_logic; 
@@ -157,7 +158,7 @@ begin
 --							b1<=rom_brush_q(2 downto 0);
 --						end if;
 --					end if;
-					if heart = "111" then
+					if victory = '1' then
 						if ready = '1' then
 							sram_address<=conv_std_logic_vector(conv_integer(vector_y) * 640 + conv_integer(vector_x) + 2 + 2 + (307200 - 512) * 2, 21);
 							r1<=in_data(31 downto 29);
@@ -169,77 +170,105 @@ begin
 							b1<="000";
 						end if;
 					else
-						if flag = '0' then
-							heart_flag:= '0';
-							for i in 1 to 10 loop
-								if i <= conv_integer(heart) then
-									if vector_y >= 20 and vector_y < 52 and vector_x >= (i - 1) * 32 + 20 and vector_x < (i - 1) * 32 + 52 then 
-										heart_flag:= '1';
-										heart_x:= conv_integer(vector_x) - ((i - 1) * 32 + 20);
-										heart_y:= conv_integer(vector_y) - 20;
-									end if;
-								end if;
-							end loop;
-							if heart_flag = '1' then
-								rom_heart_address<=conv_std_logic_vector(heart_y * 32 + heart_x, 12);
-								if rom_heart_q /= "111111111" then
-									flag:= '1';
-									r1<=rom_heart_q(8 downto 6);
-									g1<=rom_heart_q(5 downto 3);
-									b1<=rom_heart_q(2 downto 0);
-								end if;
-							end if;
-						end if;
-						
-						if flag = '0' then
-							if (role_x >= -32 and role_x < 32) and (role_y >= -64 and role_y < 0) then
-								if dashspeed = "00" then
-									rom_role_address<=conv_std_logic_vector((role_y + 64) * 64 + role_x + 32, 12);
-									if rom_role_q /= "111111111" then
-										flag:= '1';
-										r1<=rom_role_q(8 downto 6);
-										g1<=rom_role_q(5 downto 3);
-										b1<=rom_role_q(2 downto 0);
-									end if;	
-								else
-									rom_dash_address<=conv_std_logic_vector((role_y + 64) * 64 + role_x + 32, 12);
-									if rom_dash_q /= "111111111" then
-										flag:= '1';
-										r1<=rom_dash_q(8 downto 6);
-										g1<=rom_dash_q(5 downto 3);
-										b1<=rom_dash_q(2 downto 0);
-									end if;	
-								end if;
-							end if;
-						end if;
-						
-						if flag = '0' then
-							tmp:= 761;
-							for i in 1 to 20 loop
-								tmp:= tmp - 38;
-								if i <= conv_integer(total) then
-									if vector_x >= boxes(tmp + 37 downto tmp + 28) and vector_x <= boxes(tmp + 18 downto tmp + 9) and 480 - vector_y >= boxes(tmp + 27 downto tmp + 19) and 480 - vector_y <= boxes(tmp + 8 downto tmp) then
-										flag:= '1';
-										brick_x:= conv_integer(vector_x) - conv_integer(boxes(tmp + 37 downto tmp + 28));
-										brick_y:= 480 - conv_integer(vector_y) - conv_integer(boxes(tmp + 27 downto tmp + 19));
-									end if;
-								end if;
-							end loop;
-							if flag = '1' then
-								rom_box_address<=conv_std_logic_vector((brick_y mod 64) * 64 + (brick_x mod 64), 12);
-								r1<=rom_box_q(8 downto 6);
-								g1<=rom_box_q(5 downto 3);
-								b1<=rom_box_q(2 downto 0);
+						if heart = "111" then
+							if ready = '1' then
+								sram_address<=conv_std_logic_vector(conv_integer(vector_y) * 640 + conv_integer(vector_x) + 2 + 2 + 307200 - 512, 21);
+								r1<=in_data(31 downto 29);
+								g1<=in_data(28 downto 26);
+								b1<=in_data(25 downto 23);
 							else
-								if ready = '1' then
-									sram_address<=conv_std_logic_vector(conv_integer(vector_y) * 640 + ((conv_integer(vector_x) + conv_integer(lx)) mod 640) + 2, 21);
-									r1<=in_data(31 downto 29);
-									g1<=in_data(28 downto 26);
-									b1<=in_data(25 downto 23);
+								r1<="000";
+								g1<="000";
+								b1<="000";
+							end if;
+						else
+							if flag = '0' then
+								heart_flag:= '0';
+								for i in 1 to 10 loop
+									if i <= conv_integer(heart) then
+										if vector_y >= 20 and vector_y < 52 and vector_x >= (i - 1) * 32 + 20 and vector_x < (i - 1) * 32 + 52 then 
+											heart_flag:= '1';
+											heart_x:= conv_integer(vector_x) - ((i - 1) * 32 + 20);
+											heart_y:= conv_integer(vector_y) - 20;
+										end if;
+									end if;
+								end loop;
+								if heart_flag = '1' then
+									rom_heart_address<=conv_std_logic_vector(heart_y * 32 + heart_x, 12);
+									if rom_heart_q /= "111111111" then
+										flag:= '1';
+										r1<=rom_heart_q(8 downto 6);
+										g1<=rom_heart_q(5 downto 3);
+										b1<=rom_heart_q(2 downto 0);
+									end if;
+								end if;
+							end if;
+							
+							if flag = '0' then
+								if vector_y >= 20 and vector_y < 40 and vector_x >= 390 and vector_x < 600 then
+									flag:= '1';
+									if vector_x < 390 + 30 * conv_integer(dashenergy) then
+										r1<= "110";
+										g1<= "110";
+										b1<= "000";
+									else
+										r1<= "000";
+										g1<= "110";
+										b1<= "110";
+									end if;
+								end if;
+							end if;
+							
+							if flag = '0' then
+								if (role_x >= -32 and role_x < 32) and (role_y >= -64 and role_y < 0) then
+									if dashspeed = "00" then
+										rom_role_address<=conv_std_logic_vector((role_y + 64) * 64 + role_x + 32, 12);
+										if rom_role_q /= "111111111" then
+											flag:= '1';
+											r1<=rom_role_q(8 downto 6);
+											g1<=rom_role_q(5 downto 3);
+											b1<=rom_role_q(2 downto 0);
+										end if;	
+									else
+										rom_dash_address<=conv_std_logic_vector((role_y + 64) * 64 + role_x + 32, 12);
+										if rom_dash_q /= "111111111" then
+											flag:= '1';
+											r1<=rom_dash_q(8 downto 6);
+											g1<=rom_dash_q(5 downto 3);
+											b1<=rom_dash_q(2 downto 0);
+										end if;	
+									end if;
+								end if;
+							end if;
+							
+							if flag = '0' then
+								tmp:= 761;
+								for i in 1 to 20 loop
+									tmp:= tmp - 38;
+									if i <= conv_integer(total) then
+										if vector_x >= boxes(tmp + 37 downto tmp + 28) and vector_x <= boxes(tmp + 18 downto tmp + 9) and 480 - vector_y >= boxes(tmp + 27 downto tmp + 19) and 480 - vector_y <= boxes(tmp + 8 downto tmp) then
+											flag:= '1';
+											brick_x:= conv_integer(vector_x) - conv_integer(boxes(tmp + 37 downto tmp + 28));
+											brick_y:= 480 - conv_integer(vector_y) - conv_integer(boxes(tmp + 27 downto tmp + 19));
+										end if;
+									end if;
+								end loop;
+								if flag = '1' then
+									rom_box_address<=conv_std_logic_vector((brick_y mod 64) * 64 + (brick_x mod 64), 12);
+									r1<=rom_box_q(8 downto 6);
+									g1<=rom_box_q(5 downto 3);
+									b1<=rom_box_q(2 downto 0);
 								else
-									r1<="000";
-									g1<="000";
-									b1<="000";
+									if ready = '1' then
+										sram_address<=conv_std_logic_vector(conv_integer(vector_y) * 640 + ((conv_integer(vector_x) + conv_integer(lx)) mod 640) + 2, 21);
+										r1<=in_data(31 downto 29);
+										g1<=in_data(28 downto 26);
+										b1<=in_data(25 downto 23);
+									else
+										r1<="000";
+										g1<="000";
+										b1<="000";
+									end if;
 								end if;
 							end if;
 						end if;

@@ -36,13 +36,14 @@ component vga640480 is
 			rx,ry,mx,my    :      in std_LOGIC_vector(9 downto 0);
 			lx             :      in std_logic_vector(15 downto 0);          --absolute coordinate
 			dashenergy, dashspeed: in std_logic_vector(2 downto 0);
+			victory        :      in std_logic;
 			rom_role_address, rom_brush_address, rom_box_address, rom_heart_address, rom_dash_address:		  out	STD_LOGIC_VECTOR(11 DOWNTO 0);
 			
 			reset       :         in  STD_LOGIC;
 			clk25       :		  out std_logic; 
 			rom_role_q, rom_brush_q, rom_box_q, rom_heart_q, rom_dash_q  :		  in STD_LOGIC_vector(8 downto 0);
-			clk_0       :         in  STD_LOGIC; --100M闁哄啫鐖奸弫鎾诲棘閵堝棗顏堕梺璺ㄥ枑閺嬪骞忛悜鑺ユ櫢闁哄倶鍊栫€
-			hs,vs       :         out STD_LOGIC; --闂佽法鍠愰弸濠氬箯瀹勭増鍊遍梺璺ㄥ枑閺嬪骞忛悜鑺ユ櫢闁哄倶鍊栫€氬綊鏌ㄩ悢鍛婄伄闁瑰嘲鍢查幃鎾绘煥閻斿憡鐏柟椋庡厴閺佹捇鎳樺鍗炵殤闁
+			clk_0       :         in  STD_LOGIC; --100M闂佸搫鍟悥濂稿极閹捐妫橀柕鍫濇椤忓爼姊虹捄銊ユ瀾闁哄顭烽獮蹇涙倻閼恒儲娅㈤梺鍝勫€堕崐鏍偓
+			hs,vs       :         out STD_LOGIC; --闂備浇娉曢崰鎰板几婵犳艾绠€瑰嫮澧楅崐閬嶆⒑鐠恒劌鏋戦柡瀣煼楠炲繘鎮滈懞銉︽闂佸搫鍊堕崐鏍偓姘秺閺屻劑鎮㈤崨濠勪紕闂佺懓鍢查崲鏌ュ箖閹剧粯鐓ラ柣鏂挎啞閻忣噣鏌熸搴″幋闁轰焦鎹囬幊妯侯潩閸楃偟娈ら梺
 			r,g,b       :         out STD_LOGIC_vector(2 downto 0);
 			----------------------------box--------------------------
 			enable : out std_logic;
@@ -191,6 +192,7 @@ u1: vga640480 port map(
 						rx=>xx, ry=>yy, mx=>mouse_x, my=>mouse_y,
 						lx=>lx,
 						dashenergy=>dashEnergy, dashspeed=>dashSpeed,
+						victory=>victory,
 						rom_role_address=>role_address_tmp, rom_brush_address=>brush_address_tmp, rom_box_address=>box_address_tmp, rom_heart_address=>heart_address_tmp, rom_dash_address=>dash_address_tmp,
 						reset=>reset, 
 						clk25=>clk25,
