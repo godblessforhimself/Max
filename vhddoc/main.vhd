@@ -246,7 +246,7 @@ gc: gameControlUnit port map(
 						heart=>heart_tmp,
 						dashEnergy=>dashEnergy,
 						dashSpeed=>dashSpeed,
-						vicory=>victory,
+						victory=>victory,
 						player_x=>xxx,
 						player_y=>yyy
                    );
