@@ -35,13 +35,14 @@ component vga640480 is
 			heart          :      in std_logic_vector(2 downto 0);
 			rx,ry,mx,my    :      in std_LOGIC_vector(9 downto 0);
 			lx             :      in std_logic_vector(15 downto 0);          --absolute coordinate
-			rom_role_address, rom_brush_address, rom_box_address, rom_heart_address:		  out	STD_LOGIC_VECTOR(11 DOWNTO 0);
+			dashenergy, dashspeed: in std_logic_vector(2 downto 0);
+			rom_role_address, rom_brush_address, rom_box_address, rom_heart_address, rom_dash_address:		  out	STD_LOGIC_VECTOR(11 DOWNTO 0);
 			
 			reset       :         in  STD_LOGIC;
 			clk25       :		  out std_logic; 
-			rom_role_q, rom_brush_q, rom_box_q, rom_heart_q  :		  in STD_LOGIC_vector(8 downto 0);
-			clk_0       :         in  STD_LOGIC; --100M閺冨爼鏁撻弬銈嗗闁跨喐鏋婚幏鐑芥晸閺傘倖瀚
-			hs,vs       :         out STD_LOGIC; --闁跨喐鏋婚幏宄版倱闁跨喐鏋婚幏鐑芥晸閺傘倖瀚归柨鐔告灮閹峰嘲鎮撻柨鐔告灮閹风兘鏁撻懘姘卞皑閹
+			rom_role_q, rom_brush_q, rom_box_q, rom_heart_q, rom_dash_q  :		  in STD_LOGIC_vector(8 downto 0);
+			clk_0       :         in  STD_LOGIC; --100M闁哄啫鐖奸弫鎾诲棘閵堝棗顏堕梺璺ㄥ枑閺嬪骞忛悜鑺ユ櫢闁哄倶鍊栫€
+			hs,vs       :         out STD_LOGIC; --闂佽法鍠愰弸濠氬箯瀹勭増鍊遍梺璺ㄥ枑閺嬪骞忛悜鑺ユ櫢闁哄倶鍊栫€氬綊鏌ㄩ悢鍛婄伄闁瑰嘲鍢查幃鎾绘煥閻斿憡鐏柟椋庡厴閺佹捇鎳樺鍗炵殤闁
 			r,g,b       :         out STD_LOGIC_vector(2 downto 0);
 			----------------------------box--------------------------
 			enable : out std_logic;
@@ -58,9 +59,9 @@ end component;
 
 component vga_rom is
 port(
-	role_address, brush_address, box_address, heart_address		: IN STD_LOGIC_VECTOR (11 DOWNTO 0);
+	role_address, brush_address, box_address, heart_address, dash_address		: IN STD_LOGIC_VECTOR (11 DOWNTO 0);
 	clock		: IN STD_LOGIC ;
-	role_q, brush_q, box_q, heart_q		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0)
+	role_q, brush_q, box_q, heart_q, dash_q		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0)
 );
 end component;
 ----------------------------mouse-------------------------------
@@ -143,9 +144,9 @@ end component;
 ----------------------------------------------
 
 -----------------------vga-------------------------------------
-signal role_address_tmp, brush_address_tmp, box_address_tmp, heart_address_tmp: std_logic_vector(11 downto 0);
+signal role_address_tmp, brush_address_tmp, box_address_tmp, heart_address_tmp, dash_address_tmp: std_logic_vector(11 downto 0);
 signal clk25: std_logic;
-signal role_q_tmp, brush_q_tmp, box_q_tmp, heart_q_tmp: std_logic_vector(8 downto 0);
+signal role_q_tmp, brush_q_tmp, box_q_tmp, heart_q_tmp, dash_q_tmp: std_logic_vector(8 downto 0);
 signal heart_tmp: std_logic_vector(2 downto 0);
 signal xx: std_LOGIC_VECTOR(9 downto 0):="0100101100";
 signal yy: std_LOGIC_VECTOR(9 downto 0):="0011100110";
@@ -187,10 +188,11 @@ u1: vga640480 port map(
 						heart=>heart_tmp,
 						rx=>xx, ry=>yy, mx=>mouse_x, my=>mouse_y,
 						lx=>lx,
-						rom_role_address=>role_address_tmp, rom_brush_address=>brush_address_tmp, rom_box_address=>box_address_tmp, rom_heart_address=>heart_address_tmp,
+						dashenergy=>dashEnergy, dashspeed=>dashSpeed,
+						rom_role_address=>role_address_tmp, rom_brush_address=>brush_address_tmp, rom_box_address=>box_address_tmp, rom_heart_address=>heart_address_tmp, rom_dash_address=>dash_address_tmp,
 						reset=>reset, 
 						clk25=>clk25,
-						rom_role_q=>role_q_tmp, rom_brush_q=>brush_q_tmp, rom_box_q=>box_q_tmp, rom_heart_q=>heart_q_tmp,
+						rom_role_q=>role_q_tmp, rom_brush_q=>brush_q_tmp, rom_box_q=>box_q_tmp, rom_heart_q=>heart_q_tmp, rom_dash_q=>dash_q_tmp,
 						clk_0=>clk_0, 
 						hs=>hs, vs=>vs, 
 						r=>rr, g=>gg, b=>bb,
@@ -204,9 +206,9 @@ u1: vga640480 port map(
 					);
 
 rom: vga_rom port map(
-					role_address=>role_address_tmp, brush_address=>brush_address_tmp, box_address=>box_address_tmp, heart_address=>heart_address_tmp,
+					role_address=>role_address_tmp, brush_address=>brush_address_tmp, box_address=>box_address_tmp, heart_address=>heart_address_tmp, dash_address=>dash_address_tmp,
 					clock=>clk_0,
-					role_q=>role_q_tmp, brush_q=>brush_q_tmp, box_q=>box_q_tmp, heart_q=>heart_q_tmp
+					role_q=>role_q_tmp, brush_q=>brush_q_tmp, box_q=>box_q_tmp, heart_q=>heart_q_tmp, dash_q=>dash_q_tmp
 					);				
 					
 mouse: drawpoint port map(

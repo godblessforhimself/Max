@@ -8,10 +8,11 @@ entity vga640480 is
 			heart       :         in std_logic_vector(2 downto 0);
 			rx,ry,mx,my :         in std_logic_vector(9 downto 0);                   --人物，鼠标坐标
 			lx          :         in std_logic_vector(15 downto 0);                  --absolute coordinate
-			rom_role_address, rom_brush_address, rom_box_address, rom_heart_address:		    out	std_logic_vector(11 DOWNTO 0);
+			dashenergy, dashspeed: in std_logic_vector(2 downto 0);
+			rom_role_address, rom_brush_address, rom_box_address, rom_heart_address, rom_dash_address:		    out	std_logic_vector(11 DOWNTO 0);
 			reset       :         in  std_logic;
 			clk25:		    out std_logic; 
-			rom_role_q, rom_brush_q, rom_box_q, rom_heart_q:		    in std_logic_vector(8 downto 0);
+			rom_role_q, rom_brush_q, rom_box_q, rom_heart_q, rom_dash_q:		    in std_logic_vector(8 downto 0);
 			clk_0       :         in  std_logic; 
 			hs,vs       :         out std_logic; --��ͬ������ͬ���ź�
 			r,g,b       :         out std_logic_vector(2 downto 0);
@@ -192,13 +193,23 @@ begin
 						
 						if flag = '0' then
 							if (role_x >= -32 and role_x < 32) and (role_y >= -64 and role_y < 0) then
-								rom_role_address<=conv_std_logic_vector((role_y + 64) * 64 + role_x + 32, 12);
-								if rom_role_q /= "111111111" then
-									flag:= '1';
-									r1<=rom_role_q(8 downto 6);
-									g1<=rom_role_q(5 downto 3);
-									b1<=rom_role_q(2 downto 0);
-								end if;	
+								if dashspeed = "00" then
+									rom_role_address<=conv_std_logic_vector((role_y + 64) * 64 + role_x + 32, 12);
+									if rom_role_q /= "111111111" then
+										flag:= '1';
+										r1<=rom_role_q(8 downto 6);
+										g1<=rom_role_q(5 downto 3);
+										b1<=rom_role_q(2 downto 0);
+									end if;	
+								else
+									rom_dash_address<=conv_std_logic_vector((role_y + 64) * 64 + role_x + 32, 12);
+									if rom_dash_q /= "111111111" then
+										flag:= '1';
+										r1<=rom_dash_q(8 downto 6);
+										g1<=rom_dash_q(5 downto 3);
+										b1<=rom_dash_q(2 downto 0);
+									end if;	
+								end if;
 							end if;
 						end if;
 						
