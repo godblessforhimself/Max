@@ -13,7 +13,7 @@ port(
 	--test_dir : buffer std_logic_vector(2 downto 0);
 	--box : buffer std_logic_vector(63 downto 0);
 	heart : buffer std_logic_vector(2 downto 0);
-	dashEnergy : buffer std_logic_vector(2 downto 0);
+	dashEnergy, dashSpeed : buffer std_logic_vector(2 downto 0);
 	player_x, player_y : buffer std_logic_vector(15 downto 0)
 	--background : buffer std_logic_vector(10 downto 0)
 	);
@@ -82,7 +82,7 @@ signal dir : std_logic_vector(2 downto 0);
 signal endFor : std_logic;
 signal clk_1M : std_logic;
 signal life : std_logic_vector(2 downto 0);
-signal dashSpeed : std_logic_vector(2 downto 0);
+--signal dashSpeed : std_logic_vector(2 downto 0);
 signal cntOfFrame : std_logic_vector(15 downto 0);
 --------------------------end signal & variable define---------------------------
 
@@ -260,7 +260,7 @@ begin
 					if(cntOfFrame(4 downto 0) = "11111" and dashEnergy < "111" and dash = '0') then
 						dashEnergy <= "111";
 					end if;
-					if(cntOfFrame(2 downto 0) = "111" and dashSpeed > "000") then
+					if(cntOfFrame(1 downto 0) = "11" and dashSpeed > "000") then
 						dashSpeed <= dashSpeed - '1';
 					end if;
 					cntOfFrame <= cntOfFrame + '1';
