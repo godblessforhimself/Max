@@ -258,7 +258,7 @@ begin
 				cntofControlUnit <= cntOfControlUnit + '1';
 				if(cntOfControlUnit(14) = '1') then
 					if(cntOfFrame(4 downto 0) = "11111" and dashEnergy < "111" and dash = '0') then
-						dashEnergy <= dashEnergy + '1';
+						dashEnergy <= "111";
 					end if;
 					if(cntOfFrame(2 downto 0) = "111" and dashSpeed > "000") then
 						dashSpeed <= dashSpeed - '1';
