@@ -14,6 +14,7 @@ port(
 	--box : buffer std_logic_vector(63 downto 0);
 	heart : buffer std_logic_vector(2 downto 0);
 	dashEnergy, dashSpeed : buffer std_logic_vector(2 downto 0);
+	victory : out std_logic := '0';
 	player_x, player_y : buffer std_logic_vector(15 downto 0)
 	--background : buffer std_logic_vector(10 downto 0)
 	);
@@ -59,6 +60,7 @@ end component;
 type myBox is array(0 to 3) of std_logic_vector(15 downto 0);
 constant totalObjs : integer := 500;
 constant zeros : std_logic_vector(20 downto 0) := "000000000000000000000";
+constant endX : std_logic_vector(15 downto 0) := "0011110110000110";
 signal step : std_logic_vector(15 downto 0) := "0000000000000111";
 signal ijump_v : std_logic_vector(15 downto 0) := "0000000000001111";
 constant screenLEdge : std_logic_vector(15 downto 0) := "0000000100000000";
@@ -104,7 +106,7 @@ begin
 						nextSaveX <= zeros(15 downto 13) & "1" & zeros(11 downto 0);
 						
 					when "001" =>
-						if(moveD = '1' and life /= "000" and life /= "111") then 
+						if(moveD = '1' and life /= "000" and life /= "111" and absoluteX < endX) then 
 							GPS <= "010";
 							PS <= "00";
 						
@@ -113,9 +115,11 @@ begin
 							GPS <= "010";
 							PS <= "00";
 							
-						elsif(life = "000") then
+						elsif(life = "000" and absoluteX < endX) then
 							GPS <= "000";
 							--CUS <= '1';
+						elsif(absoluteX > endX) then
+							GPS <= "100";
 						end if;
 						absoluteX <= lastSaveX;
 						absoluteY <= lastSaveY;
@@ -237,9 +241,18 @@ begin
 						life <= life - '1';
 						
 					when "100" =>
-						GPS <= "001";
-						CUS <= '1';
-						
+						if(moveD = '1') then
+							GPS <= "010";
+							PS <= "00";
+							IWBS <= '0';
+							life <= "011";
+							lastSaveX <= zeros(15 downto 7) & "1" & zeros(5 downto 0);
+							lastSaveY <= zeros(15 downto 9) & "1" & zeros(7 downto 0);
+							nextSaveX <= zeros(15 downto 13) & "1" & zeros(11 downto 0);
+							victory <= '0';
+						else
+							victory <= '1';
+						end if;
 					when others =>
 						GPS <= "001";
 						CUS <= '1';
