@@ -16,8 +16,8 @@ port (
     sram_data: inout std_logic_vector (31 downto 0);
     sram_rw:   buffer std_logic_vector (1 downto 0) := "11";
     
+	 choice: in std_logic_vector(1 downto 0);
 	mode_ctrl: in std_logic;
-
 	rd : in std_logic;
 --	wr : in std_logic;
 --	dm_in : in std_logic;	-- data mode, 0 = write continuously, 1 = write single block
@@ -139,6 +139,7 @@ begin
 		variable bit_counter : integer range 0 to 160;
 		variable sram_byte_count : integer range 0 to 5;
 		variable ignored_size : integer range 0 to IGNORE_SIZE;
+		variable last: std_logic_vector(1 downto 0);
 	begin
 		data_mode <= dm_in;
 
@@ -150,43 +151,49 @@ begin
 				case state is
                    
                 when DISPLAY =>
---                    if real_rd = '0' then
---                        state <= NEXT_IMG;
---                    end if;
+                    if choice /= last then
+                        state <= NEXT_IMG;
+                    end if;
                     sram_rw <= "01";
---                    sram_data <= (others=>'Z');
---                    sram_addr(18 downto 0) <= vga_addr;
---                    sram_addr(20 downto 19) <= "00";
---						  vga_data(8 downto 0) <= sram_data(31 downto 23); 
+							last:= choice;
                     led_out_state <= "100";
 								
                 when NEXT_IMG =>
-                    address <= std_logic_vector(unsigned(img_start_addr) + x"12C200");
-					sclk_sig <= '0';
-					cmd_out <= (others => '1');
-					byte_counter := 0;
-					cmd_mode <= '1'; -- 0=data, 1=command
-					response_mode <= '1';	-- 0=data, 1=command
-					bit_counter := 160;
-					cs <= '1';
-					
-					ignored_size := IGNORE_SIZE;
-					--------sram--------
-					sram_data <= (others=>'Z');
-					sram_rw <= "11";
-					sram_addr <= (others=>'0');
-					sram_byte_count := 0;
-					sram_read_now <= '0';
-					---------------------
-					state <= INIT;
-					led_out_state <= "000";
+                    if choice = "00" then
+							address <= x"00000000";
+							else
+								address <= x"0012C200";
+							end if;
+							sclk_sig <= '0';
+							cmd_out <= (others => '1');
+							byte_counter := 0;
+							cmd_mode <= '1'; -- 0=data, 1=command
+							response_mode <= '1';	-- 0=data, 1=command
+							bit_counter := 160;
+							cs <= '1';
+							
+							ignored_size := IGNORE_SIZE;
+							--------sram--------
+							sram_data <= (others=>'Z');
+							sram_rw <= "11";
+							sram_addr <= (others=>'0');
+
+							sram_byte_count := 0;
+							sram_read_now <= '0';
+							---------------------
+							state <= INIT;
+							led_out_state <= "000";
 				
 				when RST =>
 				    img_start_addr <= (others=>'0');
 					sclk_sig <= '0';
 					cmd_out <= (others => '1');
 					byte_counter := 0;
-					address <= x"00000000";
+					if choice = "00" then
+						address <= x"00000000";
+					else
+						address <= x"0012C200";
+					end if;
 					cmd_mode <= '1'; -- 0=data, 1=command
 					response_mode <= '1';	-- 0=data, 1=command
 					bit_counter := 160;
@@ -241,7 +248,7 @@ begin
 				    sram_byte_count := 0;
 --				    if sram_addr(20 downto 19) /= "00" then
                     --if sram_addr(20 downto 14) = "0010011" then
-								if sram_addr(18 downto 0) = "1001011000000000000" then
+							if sram_addr(19 downto 0) = "10010110000000000000" then
                         sram_data <= (others=>'Z');
                         state <= DISPLAY;
 					else

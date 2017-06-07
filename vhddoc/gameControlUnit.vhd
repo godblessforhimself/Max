@@ -92,7 +92,7 @@ begin
 			if(CUS = '0') then
 				case(GPS) is
 					when "000" =>
-						life <= "011";
+						life <= "111";
 						GPS <= "001";
 						IWBS <= '0';
 						lastSaveX <= zeros(15 downto 7) & "1" & zeros(5 downto 0);
@@ -100,7 +100,12 @@ begin
 						nextSaveX <= zeros(15 downto 13) & "1" & zeros(11 downto 0);
 						
 					when "001" =>
-						if(moveD = '1' and life /= "000") then 
+						if(moveD = '1' and life /= "000" and life /= "111") then 
+							GPS <= "010";
+							PS <= "00";
+						
+						elsif(moveD = '1' and life /= "000" and life = "111") then
+							life <= "011";
 							GPS <= "010";
 							PS <= "00";
 							

@@ -40,8 +40,8 @@ component vga640480 is
 			reset       :         in  STD_LOGIC;
 			clk25       :		  out std_logic; 
 			rom_role_q, rom_brush_q, rom_box_q, rom_heart_q  :		  in STD_LOGIC_vector(8 downto 0);
-			clk_0       :         in  STD_LOGIC; --100M时锟斤拷锟斤拷锟斤拷
-			hs,vs       :         out STD_LOGIC; --锟斤拷同锟斤拷锟斤拷锟斤拷同锟斤拷锟脚猴拷
+			clk_0       :         in  STD_LOGIC; --100M鏃堕敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹
+			hs,vs       :         out STD_LOGIC; --閿熸枻鎷峰悓閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷峰悓閿熸枻鎷烽敓鑴氱尨鎷
 			r,g,b       :         out STD_LOGIC_vector(2 downto 0);
 			----------------------------box--------------------------
 			enable : out std_logic;
@@ -51,7 +51,10 @@ component vga640480 is
 			-----------------------------sram-------------------------
 			ready : in std_logic;
 			sram_address   :  out std_logic_vector(20 downto 0);
-			in_data        :  in  std_logic_vector(31 downto 0)
+			in_data        :  in  std_logic_vector(31 downto 0);
+			----------------------------sd----------------------------
+			sd_choice      : out std_logic_vector(1 downto 0)
+			
 	  );
 end component;
 
@@ -131,8 +134,8 @@ port (
     sram_data: inout std_logic_vector (31 downto 0);
     sram_rw:   buffer std_logic_vector (1 downto 0) := "11";
     
+	 choice:    in std_logic_vector(1 downto 0);
 	mode_ctrl: in std_logic;
-
 	rd : in std_logic;
 	reset_in : in std_logic;
 	clk_in : in std_logic	-- twice the SPI clk
@@ -142,6 +145,7 @@ end component;
 
 -----------------------vga-------------------------------------
 signal role_address_tmp, brush_address_tmp, box_address_tmp, heart_address_tmp: std_logic_vector(11 downto 0);
+signal sd_choice_tmp: std_logic_vector(1 downto 0);
 signal clk25: std_logic;
 signal role_q_tmp, brush_q_tmp, box_q_tmp, heart_q_tmp: std_logic_vector(8 downto 0);
 signal heart_tmp: std_logic_vector(2 downto 0);
@@ -165,6 +169,10 @@ signal adws : std_logic_vector(3 downto 0);
 
 -------------------------sram-------------------------
 signal sram_addr_sd, sram_addr_vga: std_logic_vector (20 downto 0);
+--------------------------------------------------------
+
+-------------------------sd-----------------------------
+signal rst_tmp: std_logic;
 --------------------------------------------------------
 
 -----------------------debug----------------------
@@ -193,7 +201,9 @@ u1: vga640480 port map(
 						-----------------------------sram-------------------------
 						ready=>ready,
 						sram_address=>sram_addr_vga,
-						in_data=>sram_data
+						in_data=>sram_data,
+						-----------------------------sd----------------------------
+						sd_choice=>sd_choice_tmp
 					);
 
 rom: vga_rom port map(
@@ -246,6 +256,7 @@ sd_card: sd_test port map(
 						sram_addr=>sram_addr_sd,
 						sram_data=>sram_data,
 						sram_rw=>sram_rw,
+						choice=>sd_choice_tmp,
 						mode_ctrl=>'0',
 						rd=>'0',
 						reset_in=>reset,
