@@ -61,7 +61,7 @@ type myBox is array(0 to 3) of std_logic_vector(15 downto 0);
 constant totalObjs : integer := 500;
 constant zeros : std_logic_vector(20 downto 0) := "000000000000000000000";
 --constant endX : std_logic_vector(15 downto 0) := "0011110110000110";
-constant endX : std_logic_vector(15 downto 0) := "0000010110000110";
+constant endX : std_logic_vector(15 downto 0) := "0001010110000110";
 signal step : std_logic_vector(15 downto 0) := "0000000000000111";
 signal ijump_v : std_logic_vector(15 downto 0) := "0000000000001111";
 constant screenLEdge : std_logic_vector(15 downto 0) := "0000000100000000";
