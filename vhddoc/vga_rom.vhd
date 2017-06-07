@@ -5,9 +5,9 @@ use		ieee.std_logic_arith.all;
 
 entity vga_rom is
 port(
-	role_address, brush_address, box_address, heart_address		: IN STD_LOGIC_VECTOR (11 DOWNTO 0);
+	role_address, brush_address, box_address, heart_address, dash_address		: IN STD_LOGIC_VECTOR (11 DOWNTO 0);
 	clock		: IN STD_LOGIC ;
-	role_q, brush_q, box_q, heart_q		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0)
+	role_q, brush_q, box_q, heart_q, dash_q		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0)
 );
 end vga_rom;
 
@@ -48,6 +48,14 @@ COMPONENT heart_rom IS
 	);
 END COMPONENT;
 
+COMPONENT dash_rom IS
+	PORT
+	(
+		address		: IN STD_LOGIC_VECTOR (11 DOWNTO 0);
+		clock		: IN STD_LOGIC  := '1';
+		q		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0)
+	);
+END COMPONENT;
 begin
 
 rom1: role_rom port map(	
@@ -74,4 +82,10 @@ rom4: heart_rom port map(
 						q=>heart_q
 					);
 
+rom5: dash_rom port map (
+						address=>dash_address, 
+						clock=>clock, 
+						q=>dash_q
+					);					
+					
 end one;
