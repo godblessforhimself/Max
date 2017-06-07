@@ -40,8 +40,8 @@ component vga640480 is
 			reset       :         in  STD_LOGIC;
 			clk25       :		  out std_logic; 
 			rom_role_q, rom_brush_q, rom_box_q, rom_heart_q  :		  in STD_LOGIC_vector(8 downto 0);
-			clk_0       :         in  STD_LOGIC; --100M鏃堕敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹
-			hs,vs       :         out STD_LOGIC; --閿熸枻鎷峰悓閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷峰悓閿熸枻鎷烽敓鑴氱尨鎷
+			clk_0       :         in  STD_LOGIC; --100M閺冨爼鏁撻弬銈嗗闁跨喐鏋婚幏鐑芥晸閺傘倖瀚
+			hs,vs       :         out STD_LOGIC; --闁跨喐鏋婚幏宄版倱闁跨喐鏋婚幏鐑芥晸閺傘倖瀚归柨鐔告灮閹峰嘲鎮撻柨鐔告灮閹风兘鏁撻懘姘卞皑閹
 			r,g,b       :         out STD_LOGIC_vector(2 downto 0);
 			----------------------------box--------------------------
 			enable : out std_logic;
@@ -86,7 +86,7 @@ port(
 	clk_25M, clk_100M: in std_logic;
 	moveL, moveR, jump, moveD, dash : in std_logic;
 	heart : buffer std_logic_vector(2 downto 0);
-	dashEnergy : buffer std_logic_vector(2 downto 0);
+	dashEnergy, dashSpeed : buffer std_logic_vector(2 downto 0);
 	player_x, player_y : buffer std_logic_vector(15 downto 0) := "00000000000"
 	);
 end component;
@@ -178,7 +178,7 @@ signal nouse: std_logic;
 signal xxx, yyy:std_LOGIC_vector(15 downto 0);
 signal px, py : std_logic_vector(15 downto 0);
 signal lx, ly, rx, ry : std_logic_vector(15 downto 0);
-signal dashEnergy : std_logic_vector(2 downto 0);
+signal dashEnergy, dashSpeed : std_logic_vector(2 downto 0);
 
 --------------------------------------------------
 begin
@@ -241,6 +241,7 @@ gc: gameControlUnit port map(
 						dash=>adws(2),
 						heart=>heart_tmp,
 						dashEnergy=>dashEnergy,
+						dashSpeed=>dashSpeed,
 						player_x=>xxx,
 						player_y=>yyy
                    );
