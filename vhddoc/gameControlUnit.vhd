@@ -257,8 +257,8 @@ begin
 						lastSaveX <= zeros(15 downto 7) & "1" & zeros(5 downto 0);
 						lastSaveY <= zeros(15 downto 9) & "1" & zeros(7 downto 0);
 						nextSaveX <= zeros(15 downto 13) & "1" & zeros(11 downto 0);
-						absoluteX <= lastSaveX;
-						absoluteY <= lastSaveY;
+						absoluteX <= zeros(15 downto 7) & "1" & zeros(5 downto 0);
+						absoluteY <= zeros(15 downto 9) & "1" & zeros(7 downto 0);
 					when others =>
 						GPS <= "001";
 						CUS <= '1';
