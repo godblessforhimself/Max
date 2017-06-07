@@ -127,7 +127,7 @@ begin
 							when "00" =>
 								if(IWBS = '0') then
 									enableOfFor <= '0';
-									if(dash = '1') then
+									if(dash = '1' and dashEnergy > dashSpeed) then
 										dashSpeed <= dashEnergy;
 										dashEnergy <= "000";
 									end if;
@@ -260,7 +260,7 @@ begin
 					if(cntOfFrame(4 downto 0) = "11111" and dashEnergy < "111" and dash = '0') then
 						dashEnergy <= dashEnergy + '1';
 					end if;
-					if(cntOfFrame(1 downto 0) = "11" and dashSpeed > "000") then
+					if(cntOfFrame(2 downto 0) = "111" and dashSpeed > "000") then
 						dashSpeed <= dashSpeed - '1';
 					end if;
 					cntOfFrame <= cntOfFrame + '1';
