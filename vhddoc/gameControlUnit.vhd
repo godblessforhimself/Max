@@ -248,17 +248,17 @@ begin
 							PS <= "00";
 							IWBS <= '0';
 							life <= "011";
-							lastSaveX <= zeros(15 downto 7) & "1" & zeros(5 downto 0);
-							lastSaveY <= zeros(15 downto 9) & "1" & zeros(7 downto 0);
-							nextSaveX <= zeros(15 downto 13) & "1" & zeros(11 downto 0);
-							absoluteX <= lastSaveX;
-							absoluteY <= lastSaveY;
 							dashSpeed <= "000";
 							dashEnergy <= "000";
 							victory <= '0';
 						else
 							victory <= '1';
 						end if;
+						lastSaveX <= zeros(15 downto 7) & "1" & zeros(5 downto 0);
+						lastSaveY <= zeros(15 downto 9) & "1" & zeros(7 downto 0);
+						nextSaveX <= zeros(15 downto 13) & "1" & zeros(11 downto 0);
+						absoluteX <= lastSaveX;
+						absoluteY <= lastSaveY;
 					when others =>
 						GPS <= "001";
 						CUS <= '1';
