@@ -86,7 +86,7 @@ component gameControlUnit is
 port(
 	ready : in std_logic;
 	clk_25M, clk_100M: in std_logic;
-	moveL, moveR, jump, moveD : in std_logic;
+	moveL, moveR, jump, moveD, dash : in std_logic;
 	heart : buffer std_logic_vector(2 downto 0);
 	player_x, player_y : buffer std_logic_vector(15 downto 0) := "00000000000"
 	);
@@ -242,6 +242,7 @@ gc: gameControlUnit port map(
 						moveR=>'1',
 						jump=>adws(1),
 						moveD=>adws(0),
+						dash=>adws(2),
 						heart=>heart_tmp,
 						player_x=>xxx,
 						player_y=>yyy

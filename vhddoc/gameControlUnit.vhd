@@ -7,7 +7,7 @@ entity gameControlUnit is
 port(
 	ready : in std_logic;
 	clk_25M, clk_100M : in std_logic;
-	moveL, moveR, jump, moveD : in std_logic;
+	moveL, moveR, jump, moveD, dash : in std_logic;
 	--test : buffer std_logic;
 	--test_inside : buffer std_logic;
 	--test_dir : buffer std_logic_vector(2 downto 0);
@@ -81,6 +81,8 @@ signal dir : std_logic_vector(2 downto 0);
 signal endFor : std_logic;
 signal clk_1M : std_logic;
 signal life : std_logic_vector(2 downto 0);
+signal dashSpeed, dashEnergy : std_logic_vector(2 downto 0);
+signal cntOfFrame : std_logic_vector(15 downto 0);
 --------------------------end signal & variable define---------------------------
 
 begin
@@ -116,13 +118,18 @@ begin
 						end if;
 						absoluteX <= lastSaveX;
 						absoluteY <= lastSaveY;
-						
+						dashSpeed <= "000";
+						dashEnergy <= "000";
 						
 					when "010" =>
 						case (CCS) is
 							when "00" =>
 								if(IWBS = '0') then
 									enableOfFor <= '0';
+									if(dash = '1') then
+										dashSpeed <= dashEnergy;
+										dashEnergy <= "000";
+									end if;
 									if((moveL xor moveR) = '1') then 
 										IWBS <= '1';
 										dir <= "00" & moveR;
@@ -249,6 +256,13 @@ begin
 				enableOfFor <= '0';
 				cntofControlUnit <= cntOfControlUnit + '1';
 				if(cntOfControlUnit(14) = '1') then
+					if(cntOfFrame(4 downto 0) = "11111" and dashEnergy < "111" and dash = '0') then
+						dashEnergy <= dashEnergy + '1';
+					end if;
+					if(cntOfFrame(1 downto 0) = "11" and dashSpeed > "000") then
+						dashSpeed <= dashSpeed - '1';
+					end if;
+					cntOfFrame <= cntOfFrame + '1';
 					cntOfControlUnit <= zeros;
 					CUS <= '0';
 					CCS <= "00";
@@ -268,7 +282,7 @@ begin
 			if(enableOfFor = '1') then
 				case (FCS) is
 					when '0' =>
-						mins <= step;
+						mins <= step + dashSpeed;
 						minv <= jump_v;
 						FCS <= '1';
 						onGround <= '0';
@@ -283,7 +297,7 @@ begin
 							endFor <= '0';
 							case(dir) is
 								when "000" =>
-									if(inside(box(47 downto 32), box(15 downto 0), absoluteY) and (absoluteX + '1' > box(31 downto 16)) and (absoluteX < box(31 downto 16) +mins + '1')) then
+									if(inside(box(47 downto 32), box(15 downto 0), absoluteY) and (absoluteX + '1' > box(31 downto 16)) and (absoluteX < box(31 downto 16) + mins + '1')) then
 										mins <= absoluteX - box(31 downto 16);
 										moveToEdge <= '1';
 										--endFor <= '1';
