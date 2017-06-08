@@ -50,6 +50,7 @@ component vga640480 is
 			finish : in std_logic;
 			total : in std_logic_vector(4 downto 0);
 			boxes : in std_logic_vector(760 downto 1);
+			box_mark: in std_logic_vector(0 to 31);
 			-----------------------------sram-------------------------
 			ready : in std_logic;
 			sram_address   :  out std_logic_vector(20 downto 0);
@@ -208,6 +209,7 @@ u1: vga640480 port map(
 						enable=>enable, finish=>finish,
 						total=>total,
 						boxes=>boxes,
+						box_mark=>boxMark,
 						-----------------------------sram-------------------------
 						ready=>ready,
 						sram_address=>sram_addr_vga,

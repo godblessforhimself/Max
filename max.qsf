@@ -267,5 +267,5 @@ set_global_assignment -name VHDL_FILE vhddoc/brush_rom.vhd
 set_global_assignment -name VHDL_FILE vhddoc/box_rom.vhd
 set_global_assignment -name VHDL_FILE vhddoc/key.vhd
 set_global_assignment -name SIGNALTAP_FILE stp1.stp
-set_global_assignment -name SLD_FILE "D:/Projects/VHDL/Max/stp1_auto_stripped.stp"
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name SLD_FILE "D:/Projects/VHDL/Max/stp1_auto_stripped.stp"

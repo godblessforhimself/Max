@@ -89,7 +89,7 @@ signal life : std_logic_vector(2 downto 0);
 --signal dashSpeed : std_logic_vector(2 downto 0);
 signal cntOfFrame : std_logic_vector(15 downto 0);
 --signal ha : std_logic_vector(0 to 10);
-signal touchedHa : std_logic_vector(3 downto 0);
+signal touchedHa : std_logic_vector(3 downto 0) := "1111";
 
 --------------------------end signal & variable define---------------------------
 
@@ -339,7 +339,7 @@ begin
 								when "001" =>
 									if(inside(box(47 downto 32), box(15 downto 0), absoluteY) and (absoluteX < box(63 downto 48) + '1') and (absoluteX + mins + '1' > box(63 downto 48))) then
 										if(addressOfBox < totalHa) then
-											if(ha(conv_integer(addressOfBox)) = '0') then
+											if(ha(conv_integer(addressOfBox)) = '0' and life < 5) then
 												touchedHa <= addressOfBox(3 downto 0);
 											end if;
 										else
@@ -352,7 +352,7 @@ begin
 								when "010" =>
 									if(inside(box(63 downto 48), box(31 downto 16), absoluteX) and (absoluteY = box(15 downto 0))) then
 										if(addressOfBox < totalHa) then
-											if(ha(conv_integer(addressOfBox)) = '0') then
+											if(ha(conv_integer(addressOfBox)) = '0' and life < 5) then
 												touchedHa <= addressOfBox(3 downto 0);
 											end if;
 										else
@@ -364,7 +364,7 @@ begin
 								when "011" =>
 									if(inside(box(63 downto 48), box(31 downto 16), absoluteX) and (absoluteY < box(47 downto 32) + '1') and (absoluteY + minv + '1' > box(47 downto 32))) then
 										if(addressOfBox < totalHa) then
-											if(ha(conv_integer(addressOfBox)) = '0') then
+											if(ha(conv_integer(addressOfBox)) = '0' and life < 5) then
 												touchedHa <= addressOfBox(3 downto 0);
 											end if;
 										else
@@ -377,7 +377,7 @@ begin
 								when "100" =>
 									if(inside(box(63 downto 48), box(31 downto 16), absoluteX) and (absoluteY + '1' > box(15 downto 0)) and (absoluteY < box(15 downto 0) + minv + '1')) then
 										if(addressOfBox < totalHa) then
-											if(ha(conv_integer(addressOfBox)) = '0') then
+											if(ha(conv_integer(addressOfBox)) = '0' and life < 5) then
 												touchedHa <= addressOfBox(3 downto 0);
 											end if;
 										else

@@ -64,7 +64,7 @@ begin
 			else
 				if(address + 1 > totalobjs) then
 					finish <= '1';
-				elsif(address >= totalHa or used(conv_integer(address)) = '0') then
+				else
 					ix := max(lx, box(63 downto 48));
 					ax := min(rx, box(31 downto 16));
 					iy := max(ly, box(47 downto 32));
@@ -80,8 +80,13 @@ begin
 						else
 							mark(conv_integer(total)) <= '0';
 						end if;
-						total <= total + '1';
-						tot := tot - 38;
+						if(address > totalHa - 1) then
+							total <= total + '1';
+							tot := tot - 38;
+						elsif(used(conv_integer(address)) = '0') then
+							total <= total + '1';
+							tot := tot - 38;
+						end if;
 					end if;
 					address <= address + '1';
 				end if;
