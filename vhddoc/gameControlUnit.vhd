@@ -15,6 +15,7 @@ port(
 	heart : buffer std_logic_vector(2 downto 0);
 	dashEnergy, dashSpeed : buffer std_logic_vector(2 downto 0);
 	victory : out std_logic;
+	ha : buffer std_logic_vector(0 to 10);
 	player_x, player_y : buffer std_logic_vector(15 downto 0)
 	--background : buffer std_logic_vector(10 downto 0)
 	);
@@ -58,6 +59,7 @@ end component;
 --type statsOfCoordinateCounting is (LR, fall, jump, down);
 --type statsOfForControl is (before, in);
 type myBox is array(0 to 3) of std_logic_vector(15 downto 0);
+constant totalHa : integer := 5;
 constant totalObjs : integer := 500;
 constant zeros : std_logic_vector(20 downto 0) := "000000000000000000000";
 constant endX : std_logic_vector(15 downto 0) := "0011110110000110";
@@ -86,6 +88,9 @@ signal clk_1M : std_logic;
 signal life : std_logic_vector(2 downto 0);
 --signal dashSpeed : std_logic_vector(2 downto 0);
 signal cntOfFrame : std_logic_vector(15 downto 0);
+--signal ha : std_logic_vector(0 to 10);
+signal touchedHa : std_logic_vector(3 downto 0);
+
 --------------------------end signal & variable define---------------------------
 
 begin
@@ -105,6 +110,7 @@ begin
 						lastSaveY <= zeros(15 downto 9) & "1" & zeros(7 downto 0);
 						nextSaveX <= zeros(15 downto 13) & "1" & zeros(11 downto 0);
 						victory <= '0';
+						ha <= zeros(10 downto 0);
 						
 					when "001" =>
 						if(moveD = '1' and life /= "000" and life /= "111" and absoluteX < endX) then 
@@ -156,7 +162,7 @@ begin
 									enableOfFor <= '1';
 									if(endFor = '1') then
 										IWBS <= '0';
-										if(dir = "00") then
+										if(dir = "000") then
 											absoluteX <= absoluteX - mins;
 										else
 											absoluteX <= absoluteX + mins;
@@ -258,6 +264,8 @@ begin
 						nextSaveX <= zeros(15 downto 13) & "1" & zeros(11 downto 0);
 						absoluteX <= zeros(15 downto 7) & "1" & zeros(5 downto 0);
 						absoluteY <= zeros(15 downto 9) & "1" & zeros(7 downto 0);
+						ha <= zeros(10 downto 0);
+
 					when others =>
 						GPS <= "001";
 						CUS <= '1';
@@ -275,6 +283,10 @@ begin
 				enableOfFor <= '0';
 				cntofControlUnit <= cntOfControlUnit + '1';
 				if(cntOfControlUnit(14) = '1') then
+					if(life < 5 and touchedHa < totalHa and ha(conv_integer(touchedHa)) = '0') then
+						life <= life + '1';
+						ha(conv_integer(touchedHa)) <= '1';
+					end if;
 					if(cntOfFrame(4 downto 0) = "11111" and dashEnergy < "111" and dash = '0') then
 						dashEnergy <= dashEnergy + '1';
 					end if;
@@ -310,7 +322,9 @@ begin
 						fallToGround <= '0';
 						addressOfBox <= zeros(8 downto 0);
 						endFor <= '0';
-					
+						if(not (touchedHa < totalHa and ha(conv_integer(touchedHa)) = '0')) then
+							touchedHa <= "1111";
+						end if;
 					when '1' =>
 						if((endFor = '0') and (addressOfBox < totalObjs)) then
 							endFor <= '0';
@@ -324,29 +338,53 @@ begin
 									
 								when "001" =>
 									if(inside(box(47 downto 32), box(15 downto 0), absoluteY) and (absoluteX < box(63 downto 48) + '1') and (absoluteX + mins + '1' > box(63 downto 48))) then
-										mins <= box(63 downto 48) - absoluteX;
-										moveToEdge <= '1';
+										if(addressOfBox < totalHa) then
+											if(ha(conv_integer(addressOfBox)) = '0') then
+												touchedHa <= addressOfBox(3 downto 0);
+											end if;
+										else
+											mins <= box(63 downto 48) - absoluteX;
+											moveToEdge <= '1';
+										end if;
 										--endFor <= '1';
 									end if;
 									
 								when "010" =>
 									if(inside(box(63 downto 48), box(31 downto 16), absoluteX) and (absoluteY = box(15 downto 0))) then
-										onGround <= '1';
-										--endFor <= '1';
+										if(addressOfBox < totalHa) then
+											if(ha(conv_integer(addressOfBox)) = '0') then
+												touchedHa <= addressOfBox(3 downto 0);
+											end if;
+										else
+											onGround <= '1';
+											--endFor <= '1';
+										end if;
 									end if;
 						
 								when "011" =>
 									if(inside(box(63 downto 48), box(31 downto 16), absoluteX) and (absoluteY < box(47 downto 32) + '1') and (absoluteY + minv + '1' > box(47 downto 32))) then
-										minv <= box(47 downto 32) - absoluteY;
-										jumpToBottle <= '1';
-										--endFor <= '1';
+										if(addressOfBox < totalHa) then
+											if(ha(conv_integer(addressOfBox)) = '0') then
+												touchedHa <= addressOfBox(3 downto 0);
+											end if;
+										else
+											minv <= box(47 downto 32) - absoluteY;
+											jumpToBottle <= '1';
+											--endFor <= '1';
+										end if;
 									end if;
 						
 								when "100" =>
 									if(inside(box(63 downto 48), box(31 downto 16), absoluteX) and (absoluteY + '1' > box(15 downto 0)) and (absoluteY < box(15 downto 0) + minv + '1')) then
-										minv <= absoluteY - box(15 downto 0);
-										fallToGround <= '1';
-										--endFor <= '1';
+										if(addressOfBox < totalHa) then
+											if(ha(conv_integer(addressOfBox)) = '0') then
+												touchedHa <= addressOfBox(3 downto 0);
+											end if;
+										else
+											minv <= absoluteY - box(15 downto 0);
+											fallToGround <= '1';
+											--endFor <= '1';
+										end if;
 									end if;
 									
 								when others =>

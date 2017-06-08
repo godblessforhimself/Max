@@ -7,8 +7,10 @@ entity boxCollector is
 port(
 	clk_25M, clk_100M, enable : in std_logic;
 	lx, ly, rx, ry : in std_logic_vector(15 downto 0);
+	used : in std_logic_vector(0 to 10);
 	finish : out std_logic;
 	total : buffer std_logic_vector(4 downto 0);
+	mark : out std_logic_vector(0 to 31);
 	boxes : out std_logic_vector(760 downto 1)
 );
 end boxCollector;
@@ -41,6 +43,7 @@ port(
 );
 end component;
 
+constant totalHa : integer := 5;
 constant totalObjs : integer := 500;
 signal address : std_logic_vector(8 downto 0) := "000000000";
 signal box : std_logic_vector(63 downto 0);
@@ -61,7 +64,7 @@ begin
 			else
 				if(address + 1 > totalobjs) then
 					finish <= '1';
-				else
+				elsif(address >= totalHa or used(conv_integer(address)) = '0') then
 					ix := max(lx, box(63 downto 48));
 					ax := min(rx, box(31 downto 16));
 					iy := max(ly, box(47 downto 32));
@@ -72,6 +75,11 @@ begin
 						iy := iy - ly;
 						ay := ay - ly;
 						boxes(tot downto tot - 37) <= ix(9 downto 0) & iy(8 downto 0) & ax(9 downto 0) & ay(8 downto 0);
+						if(address < totalHa) then
+							mark(conv_integer(total)) <= '1';
+						else
+							mark(conv_integer(total)) <= '0';
+						end if;
 						total <= total + '1';
 						tot := tot - 38;
 					end if;

@@ -90,6 +90,7 @@ port(
 	heart : buffer std_logic_vector(2 downto 0);
 	dashEnergy, dashSpeed : buffer std_logic_vector(2 downto 0);
 	victory : out std_logic;
+	ha : buffer std_logic_vector(0 to 10);
 	player_x, player_y : buffer std_logic_vector(15 downto 0) := "00000000000"
 	);
 end component;
@@ -109,8 +110,10 @@ component boxCollector is
 port(
 	clk_25M, clk_100M, enable : in std_logic;
 	lx, ly, rx, ry : in std_logic_vector(15 downto 0);
+	used : in std_logic_vector(0 to 10);
 	finish : out std_logic;
 	total : buffer std_logic_vector(4 downto 0);
+	mark : out std_logic_vector(0 to 31);
 	boxes : out std_logic_vector(760 downto 1)
 );
 end component;
@@ -183,6 +186,8 @@ signal px, py : std_logic_vector(15 downto 0);
 signal lx, ly, rx, ry : std_logic_vector(15 downto 0);
 signal dashEnergy, dashSpeed : std_logic_vector(2 downto 0);
 signal victory : std_logic;
+signal boxMark : std_logic_vector(0 to 31);
+signal used : std_logic_vector(0 to 10);
 
 --------------------------------------------------
 begin
@@ -249,11 +254,12 @@ gc: gameControlUnit port map(
 						dashEnergy=>dashEnergy,
 						dashSpeed=>dashSpeed,
 						victory=>victory,
+						ha=>used,
 						player_x=>xxx,
 						player_y=>yyy
                    );
 sc: screenCoordinate port map(clk25, xxx, yyy, lx, ly, rx, ry, px, py);
-bc: boxCollector port map(clk25, clk_0, enable, lx, ly, rx, ry, finish, total, boxes);			
+bc: boxCollector port map(clk25, clk_0, enable, lx, ly, rx, ry, used, finish, total, boxMark, boxes);			
 
 sd_card: sd_test port map(
 						cs=>cs,
