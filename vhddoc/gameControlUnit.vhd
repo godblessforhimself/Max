@@ -301,7 +301,7 @@ begin
 			if(enableOfFor = '1') then
 				case (FCS) is
 					when '0' =>
-						mins <= step + dashSpeed;
+						mins <= step + dashSpeed + dashSpeed;
 						minv <= jump_v;
 						FCS <= '1';
 						onGround <= '0';
